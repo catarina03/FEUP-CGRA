@@ -21,11 +21,12 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tangram = new MyTangram(this);
+        //this.tangram = new MyTangram(this);
+        this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayTangram = true;
+        //this.displayTangram = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -72,9 +73,12 @@ class MyScene extends CGFscene {
         //Vértice escolhido para estar na origem é o vértice do pescoço
         //do lado direito
 
+        /*
         if (this.displayTangram){
             this.tangram.display();
         }
+        */
+       this.cube.display();
 
         // ---- END Primitive drawing section
     }

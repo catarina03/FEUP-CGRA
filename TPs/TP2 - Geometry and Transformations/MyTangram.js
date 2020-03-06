@@ -37,7 +37,7 @@ class MyTangram extends CGFobject {
 
         //Orange triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(255/255, 155/255, 0, 0); //?
+        this.scene.setDiffuse(255/255, 155/255, 0, 0); 
         this.scene.scale(Math.sqrt(2), Math.sqrt(2), 1);
         this.scene.translate(1, -1, 0);
         this.triangleOrange.display();
