@@ -21,21 +21,11 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.diamond = new MyDiamond(this);
-        this.triangleOrange = new MyTriangle(this);
-        this.parallelogram = new MyParallelogram(this);
-        this.triangleRed = new MyTriangleSmall(this);
-        this.triangleBlue = new MyTriangleBig(this);
-        this.trianglePink = new MyTriangle(this);
-        this.trianglePurple = new MyTriangleSmall(this);
+        this.tangram = new MyTangram(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displaySquare = true;
-        this.displayTriangle = true;
-        this.displayParallelogram = true;
-        this.displayTriangleSmall = true;
-        this.displayTriangleBig = true;
+        this.displayTangram = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -81,44 +71,10 @@ class MyScene extends CGFscene {
 
         //Vértice escolhido para estar na origem é o vértice do pescoço
         //do lado direito
-        this.pushMatrix();
-        this.translate(-Math.sqrt(2)/2, -Math.sqrt(2)/2, 0);
-        this.rotate(Math.PI * 45 / 180, 0, 0, 1);
-        this.diamond.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.scale(Math.sqrt(2), Math.sqrt(2), 1);
-        this.translate(1, -1, 0);
-        this.triangleOrange.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.translate(0, Math.sqrt(2)/2, 0);
-        this.scale(-1, 1, 1);
-        this.rotate(135 * Math.PI / 180, 0, 0, 1);
-        this.translate(-1.5, -0.5, 0);
-        this.parallelogram.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.translate(-Math.sqrt(2), -Math.sqrt(2), 0);
-        this.rotate(-45 * Math.PI / 180, 0, 0, 1);
-        this.translate(1, 0, 0);
-        this.triangleRed.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.translate(2, 0, 0);
-        this.rotate(180 * Math.PI / 180, 0, 0, 1);
-        this.triangleBlue.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.translate(0, Math.sqrt(2), 0);
-        this.rotate(-135 * Math.PI / 180, 0, 0, 1);
-        this.trianglePink.display();
-        this.popMatrix();
-        this.pushMatrix();
-        this.translate(Math.sqrt(2)/2, 3 * Math.sqrt(2)/2, 0);
-        this.rotate(-45 * Math.PI / 180 , 0, 0, 1);
-        this.trianglePurple.display();
 
+        if (this.displayTangram){
+            this.tangram.display();
+        }
 
         // ---- END Primitive drawing section
     }
