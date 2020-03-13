@@ -37,7 +37,13 @@ class MyPlane extends CGFobject {
 
         // Generating indices
         /* for nDivs = 3 output will be [0, 1, 2, 3, 4, 5, 6, 7].
-        Interpreting this index list as a TRIANGLE_STRIP will draw a row of the plane. */
+        Interpreting this         this.tangram = new MyTangram(this);
+        this.unitCube = new MyUnitCube(this);
+        
+        this.objects = [this.plane, this.pyramid, this.cone, this.tangram, this.unitCube];
+
+        // Labels and ID's for object selection on MyInterface
+        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Tangram': 3, 'Unit Cube': 4};index list as a TRIANGLE_STRIP will draw a row of the plane. */
         this.indices = [];
         for (var i = 0; i <= 2 * this.nDivs + 1; i++) {
             this.indices.push(i);

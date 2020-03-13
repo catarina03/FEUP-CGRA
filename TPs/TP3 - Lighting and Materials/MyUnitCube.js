@@ -38,8 +38,18 @@ class MyUnitCube extends CGFobject {
                     3, 2, 1,
                     4, 6, 7,
                     4, 5, 6] //up and down vertices
+
         this.indices.push(...aux_list);
-        
+
+        this.normals = [];
+        this.normals.push(1, -1, 1);
+        this.normals.push(1, -1, -1);
+        this.normals.push(-1, -1, -1);
+        this.normals.push(-1, -1, 1);
+        this.normals.push(1, 1, 1);
+        this.normals.push(1, 1, -1);
+        this.normals.push(-1, 1, -1);
+        this.normals.push(-1, 1, 1);
         
 
 		//The defined indices (and corresponding vertices)
