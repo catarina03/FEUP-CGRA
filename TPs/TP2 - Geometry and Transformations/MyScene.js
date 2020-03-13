@@ -21,12 +21,13 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        //this.tangram = new MyTangram(this);
+        this.tangram = new MyTangram(this);
         this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        //this.displayTangram = true;
+        this.displayTangram = true;
+        this.displayCube = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -73,12 +74,24 @@ class MyScene extends CGFscene {
         //Vértice escolhido para estar na origem é o vértice do pescoço
         //do lado direito
 
-        /*
+        
+        
+        this.rotate(-Math.PI/2, 1, 0, 0);
+        this.translate(6.5/2 -1, -5*Math.sqrt(2)/2, 0);
+        this.pushMatrix();
+        this.translate(1, 0, 0);
+        this.scale(6.5, 5*Math.sqrt(2), 1);
+        this.translate(0, 0, -0.51);
+        if (this.displayCube){
+            this.cube.display();
+        }
+        this.popMatrix();
+        this.pushMatrix();
         if (this.displayTangram){
             this.tangram.display();
         }
-        */
-       this.cube.display();
+        this.popMatrix();
+
 
         // ---- END Primitive drawing section
     }

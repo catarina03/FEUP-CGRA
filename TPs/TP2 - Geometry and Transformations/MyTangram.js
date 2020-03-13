@@ -29,7 +29,7 @@ class MyTangram extends CGFobject {
 
         //Green Square
         this.scene.pushMatrix();
-        this.scene.setDiffuse(0, 255/255, 0, 0);
+        //this.scene.setDiffuse(0, 255/255, 0, 0);
         this.scene.multMatrix(translation_matrix);
         this.scene.multMatrix(rotation_matrix);
         this.diamond.display();
@@ -37,7 +37,7 @@ class MyTangram extends CGFobject {
 
         //Orange triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(255/255, 155/255, 0, 0); 
+        //this.scene.setDiffuse(255/255, 155/255, 0, 0); 
         this.scene.scale(Math.sqrt(2), Math.sqrt(2), 1);
         this.scene.translate(1, -1, 0);
         this.triangleOrange.display();
@@ -45,7 +45,7 @@ class MyTangram extends CGFobject {
 
         //Yellow parallelogram
         this.scene.pushMatrix();
-        this.scene.setDiffuse(255/255, 255/255, 0, 0);
+        //this.scene.setDiffuse(255/255, 255/255, 0, 0);
         this.scene.translate(0, Math.sqrt(2)/2, 0);
         this.scene.scale(-1, 1, 1);
         this.scene.rotate(135 * Math.PI / 180, 0, 0, 1);
@@ -55,7 +55,7 @@ class MyTangram extends CGFobject {
 
         //Red triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(255/255, 27/255, 27/255, 0);
+        //this.scene.setDiffuse(255/255, 27/255, 27/255, 0);
         this.scene.translate(-Math.sqrt(2), -Math.sqrt(2), 0);
         this.scene.rotate(-45 * Math.PI / 180, 0, 0, 1);
         this.scene.translate(1, 0, 0);
@@ -64,7 +64,7 @@ class MyTangram extends CGFobject {
 
         //Blue triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(0, 155/255, 255/255, 0);
+        //this.scene.setDiffuse(0, 155/255, 255/255, 0);
         this.scene.translate(2, 0, 0);
         this.scene.rotate(180 * Math.PI / 180, 0, 0, 1);
         this.triangleBlue.display();
@@ -72,7 +72,7 @@ class MyTangram extends CGFobject {
 
         //Pink triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(255/255, 155/255, 207/255, 0);
+        //this.scene.setDiffuse(255/255, 155/255, 207/255, 0);
         this.scene.translate(0, Math.sqrt(2), 0);
         this.scene.rotate(-135 * Math.PI / 180, 0, 0, 1);
         this.trianglePink.display();
@@ -80,7 +80,7 @@ class MyTangram extends CGFobject {
 
         //Purple triangle
         this.scene.pushMatrix();
-        this.scene.setDiffuse(150/255, 80/255, 190/255, 0);
+        //this.scene.setDiffuse(150/255, 80/255, 190/255, 0);
         this.scene.translate(Math.sqrt(2)/2, 3 * Math.sqrt(2)/2, 0);
         this.scene.rotate(-45 * Math.PI / 180 , 0, 0, 1);
         this.trianglePurple.display();
