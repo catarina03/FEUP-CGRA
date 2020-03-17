@@ -17,7 +17,25 @@ class MyUnitCube extends CGFobject {
             0.5, 0.5, 0.5,	    //4
 			0.5, 0.5, -0.5,	    //5
 			-0.5, 0.5, -0.5,	//6
-            -0.5, 0.5, 0.5	    //7
+            -0.5, 0.5, 0.5,	    //7
+
+            0.5, -0.5, 0.5,	    //8
+			0.5, -0.5, -0.5,	//9
+			-0.5, -0.5, -0.5,	//10
+            -0.5, -0.5, 0.5,	//11
+            0.5, 0.5, 0.5,	    //12
+			0.5, 0.5, -0.5,	    //13
+			-0.5, 0.5, -0.5,	//14
+            -0.5, 0.5, 0.5,	    //15
+
+            0.5, -0.5, 0.5,	    //16
+			0.5, -0.5, -0.5,	//17
+			-0.5, -0.5, -0.5,	//18
+            -0.5, -0.5, 0.5,	//19
+            0.5, 0.5, 0.5,	    //20
+			0.5, 0.5, -0.5,	    //21
+			-0.5, 0.5, -0.5,	//22
+            -0.5, 0.5, 0.5	    //23
 		];
 
         //Counter-clockwise reference of vertices
@@ -41,7 +59,38 @@ class MyUnitCube extends CGFobject {
 
         this.indices.push(...aux_list);
 
-        this.normals = [];
+        this.normals = [
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, -1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+            0, 1, 0,
+
+            1, 0, 0,
+            1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0,
+            1, 0, 0,
+            1, 0, 0,
+            -1, 0, 0,
+            -1, 0, 0,
+
+            0, 0, 1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, 1,
+            0, 0, 1,
+            0, 0, -1,
+            0, 0, -1,
+            0, 0, 1
+            
+
+        ];
+
+        /*
         this.normals.push(1, -1, 1);
         this.normals.push(1, -1, -1);
         this.normals.push(-1, -1, -1);
@@ -49,7 +98,7 @@ class MyUnitCube extends CGFobject {
         this.normals.push(1, 1, 1);
         this.normals.push(1, 1, -1);
         this.normals.push(-1, 1, -1);
-        this.normals.push(-1, 1, 1);
+        this.normals.push(-1, 1, 1); */
         
 
 		//The defined indices (and corresponding vertices)
