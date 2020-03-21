@@ -34,16 +34,6 @@ class MyScene extends CGFscene {
         this.quadMaterial.setShininess(10.0);
         this.quadMaterial.loadTexture('images/default.png');
         this.quadMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
-        /*
-        this.quadMaterial = new CGFappearance(this);
-        this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.quadMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.quadMaterial.setSpecular(0.1, 0.1, 0.1, 1);
-        this.quadMaterial.setShininess(10.0);
-        this.quadMaterial.loadTexture('images/default.png');
-        this.quadMaterial.setTextureWrap('REPEAT', 'REPEAT');
-        */
         //------
 
         //------ Textures
@@ -57,7 +47,7 @@ class MyScene extends CGFscene {
         this.displayMyQuad = false;
         this.displayQuadMaterial = true;
         this.displayTangram = true;
-        this.scaleFactor = 5;
+        this.scaleFactor = 1;
         this.selectedTexture = -1;        
         this.wrapS = 0;
         this.wrapT = 0;
@@ -124,6 +114,13 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+
+        var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
+            0.0, this.scaleFactor, 0.0, 0.0,
+            0.0, 0.0, this.scaleFactor, 0.0,
+            0.0, 0.0, 0.0, 1.0];
+
+        this.multMatrix(sca);
 
         // ---- BEGIN Primitive drawing section
 

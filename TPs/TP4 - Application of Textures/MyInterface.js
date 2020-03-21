@@ -22,6 +22,9 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayQuadMaterial').name('Display QuadMaterial');
         this.gui.add(this.scene, 'displayTangram').name('Display Tangram');
 
+        //Slider element in GUI
+        this.gui.add(this.scene, 'scaleFactor', 0.1, 5).name('Scale Factor');
+
         //Dropdown for textures
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
         //Dropdown for wrapping (S)
