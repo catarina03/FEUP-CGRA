@@ -23,15 +23,33 @@ class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
+        // Textures
+        this.earth = new CGFtexture(this, 'images/earth.jpg');
+
+        //Material
+        this.material = new CGFappearance(this);
+        this.material.setAmbient(0.1, 0.1, 0.1, 1);
+        this.material.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.material.setSpecular(0.1, 0.1, 0.1, 1);
+        this.material.setShininess(10.0);
+        this.material.setTexture(this.earth);
+        this.material.setTextureWrap('REPEAT', 'REPEAT');
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
 
         this.cylinder = new MyCylinder(this);
-        this.triangle = new MyTriangle(this);
+        this.vehicle = new MyVehicle(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        
+        // GUI
+        this.displayNormals = false;
+        this.displaySphere = true;
+        this.displayCylinder = false;
+        this.displayVehicle = false;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -73,9 +91,20 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
-        // this.cylinder.display();
-        this.triangle.display();
+        if(this.displaySphere)
+            this.incompleteSphere.display();
+        
+        //Cylinder
+        if(this.displayCylinder){
+            this.material.apply();
+            this.cylinder.display();
+        }
+        if (this.displayNormals)
+            this.cylinder.enableNormalViz();
+
+        //Vehicle
+        if(this.displayVehicle)
+            this.vehicle.display();
         // ---- END Primitive drawing section
     }
 }

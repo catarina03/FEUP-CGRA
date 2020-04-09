@@ -22,22 +22,11 @@ class MyCylinder extends CGFobject {
         for (var i = 0; i < 6; i++) 
             this.vertices.push(Math.cos(i*ang), 1, Math.sin(i*ang));
         
-
+        this.vertices.push(1, 0, 0,
+                           1, 1, 0); //Repetir primeiros vertices para a textura
 
         // Indices
-        this.indices = [
-            // Base de Baixo
-            0, 4, 5,
-            0, 1, 4,
-            1, 3, 4,
-            1, 2, 3,
-            // Base de Cima
-            11, 10, 6,
-            10, 7, 6,
-            10, 9, 7,
-            9, 8, 7,
-
-        ];
+        this.indices = [];
 
         for (var i = 0; i < 5; i++) 
             this.indices.push(i, i + 6, i + 7,
@@ -49,13 +38,23 @@ class MyCylinder extends CGFobject {
         this.normals = [];
 
         for (var i = 0; i < 6; i++) 
-            this.normals.push(Math.cos(i*ang), 0,Math.sin(i*ang));
+            this.normals.push(Math.cos(i*ang), 0, Math.sin(i*ang));
         
-        for (var i = 0; i < 6; i++) 
-            this.normals.push(Math.cos(i*ang), 1, Math.sin(i*ang));
+        for (var i = 0; i < 6; i++)
+            this.normals.push(Math.cos(i*ang), 0, Math.sin(i*ang));
             
         // Text
+        var aux = 1/6;
+
         this.texCoords = [];
+
+        for (var i = 0; i < 6; i++)
+            this.texCoords.push(i*aux, 1);
+        for (var i = 0; i < 6; i++)
+            this.texCoords.push(i*aux, 0);
+        
+        this.texCoords.push(1, 1);
+        this.texCoords.push(1, 0);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
