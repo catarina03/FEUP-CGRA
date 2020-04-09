@@ -24,7 +24,7 @@ class MyCylinder extends CGFobject {
         
 
 
-        // Generating indices
+        // Indices
         this.indices = [
             // Base de Baixo
             0, 4, 5,
@@ -45,6 +45,17 @@ class MyCylinder extends CGFobject {
         this.indices.push(5, 11, 6,
                            6, 0, 5)
         
+        // Normals
+        this.normals = [];
+
+        for (var i = 0; i < 6; i++) 
+            this.normals.push(Math.cos(i*ang), 0,Math.sin(i*ang));
+        
+        for (var i = 0; i < 6; i++) 
+            this.normals.push(Math.cos(i*ang), 1, Math.sin(i*ang));
+            
+        // Text
+        this.texCoords = [];
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
