@@ -44,6 +44,9 @@ class MySphere extends CGFobject {
         var z = Math.sin(-theta) * sinPhi;
         this.vertices.push(x, y, z);
 
+        //--- Texture Coordinates
+        this.texCoords.push(longitude/this.longDivs, latitude/this.latDivs);
+
         //--- Indices
         if (latitude < this.latDivs && longitude < this.longDivs) {
           var current = latitude * latVertices + longitude;
@@ -63,10 +66,6 @@ class MySphere extends CGFobject {
         // therefore, the value of the normal is equal to the position vectro
         this.normals.push(x, y, z);
         theta += thetaInc;
-
-        //--- Texture Coordinates
-        // To be done... 
-        // May need some additional code also in the beginning of the function.
         
       }
       phi += phiInc;
