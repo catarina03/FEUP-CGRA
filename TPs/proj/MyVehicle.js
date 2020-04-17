@@ -9,7 +9,7 @@ class MyVehicle extends CGFobject {
 		this.initBuffers();
 
 		var ang = 0;
-		var vel = [0, 0];
+		var vel = 0;
 		var pos = [0,0,0];
 	}
 	initBuffers() {
@@ -39,17 +39,32 @@ class MyVehicle extends CGFobject {
 	update()
 	{
 		var matPos = [this.pos.x, 0, this.pos.z, 1];
-		var matVel = [this.vel.x , 0, this.vel.z, 1];
+		var matVel = [this.vel , 0, this.vel, 1];
 		var matAng = [	
 			Math.cos(this.ang), 0, Math.sin(this.ang), 0,
 			0, 1, 0, 0,
 			-Math.sin(this.ang), 0, Math.cos(this.ang), 0,
 			0, 0, 0, 1
 		]
-		this.matPos = this.matAng * (this.matVel * this.matPos);
+		this.matPos += this.matAng * (this.matVel);
 		
 		this.pos = [this.matPos.x, 0, matPos.z];
 
+	}
+	accelerate(val)
+	{
+		this.vel += this.val;
+	}
+	turn(val)
+	{
+		if(this.vel > 0) this.ang += val;
+			else this.ang += val;
+	}
+	reset()
+	{
+		this.ang = 0;
+		this.vel = 0;
+		this.pos = [0,0,0];
 	}
 }
 
