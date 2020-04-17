@@ -24,6 +24,9 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayCylinder').name("Display cylinder");
         this.gui.add(this.scene, 'displayCube').name("Display cube");
         this.gui.add(this.scene, 'displayVehicle').name("Display vehicle");
+        
+        //Slider element in GUI
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
 
         this.initKeys();
 

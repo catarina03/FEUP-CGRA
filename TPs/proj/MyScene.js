@@ -60,6 +60,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayVehicle = false;
         this.displayCube = true;
+        this.speedFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -84,13 +85,13 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.vehicle.accelerate(0.05);
+            this.vehicle.accelerate(0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.vehicle.accelerate(-0.05);
+            this.vehicle.accelerate(-0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
