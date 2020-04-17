@@ -49,7 +49,7 @@ class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 9);
         this.cube = new MyCubeMap(this);
-        //this.vehicle = new MyVehicle(this);
+        this.vehicle = new MyVehicle(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -110,18 +110,24 @@ class MyScene extends CGFscene {
         if(this.displayCylinder){
             this.material.apply();
             this.cylinder.display();
+
+            if (this.displayNormals)
+                this.cylinder.enableNormalViz();
+            else  this.cylinder.disableNormalViz();
         }
-        if (this.displayNormals)
-            this.cylinder.enableNormalViz();
+        
 
         //UnitCube
         if (this.displayCube){
             this.scale(50, 50, 50);
             this.material2.apply();
             this.cube.display();
+
+            if (this.displayNormals)
+                this.cube.enableNormalViz();
+            else this.cube.disableNormalViz();
         }
-        if (this.displayNormals)
-            this.cube.enableNormalViz();
+        
 
         //Vehicle
         if(this.displayVehicle)
