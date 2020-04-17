@@ -8,14 +8,14 @@ class MyVehicle extends CGFobject {
 		super(scene);
 		this.initBuffers();
 
-		var ang = 0;
-		var vel = 0;
-		var pos = [0,0,0];
+		this.ang = 0;
+		this.vel = 0;
+		this.pos = [0,0,0];
 	}
 	initBuffers() {
 		this.vertices = [
-			-1, 0, -1,	//0
-			1, 0, -1,	//1
+			-0.5, 0, -0.5,	//0
+			0.5, 0, -0.5,	//1
 			0, 0, 1	//2
 		];
 
@@ -36,35 +36,40 @@ class MyVehicle extends CGFobject {
 
 		this.initGLBuffers();
 	}
+
 	update()
 	{
-		var matPos = [this.pos.x, 0, this.pos.z, 1];
-		var matVel = [this.vel , 0, this.vel, 1];
-		var matAng = [	
-			Math.cos(this.ang), 0, Math.sin(this.ang), 0,
-			0, 1, 0, 0,
-			-Math.sin(this.ang), 0, Math.cos(this.ang), 0,
-			0, 0, 0, 1
-		]
-		this.matPos += this.matAng * (this.matVel);
-		
-		this.pos = [this.matPos.x, 0, matPos.z];
-
+		this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
+		this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
 	}
+
 	accelerate(val)
 	{
-		this.vel += this.val;
+		this.vel += val;
 	}
+
 	turn(val)
 	{
-		if(this.vel > 0) this.ang += val;
-			else this.ang += val;
+		if(this.vel >= 0)this.ang += val;
+		else this.ang -= val;
 	}
+
 	reset()
 	{
 		this.ang = 0;
 		this.vel = 0;
 		this.pos = [0,0,0];
+	}
+
+	display()
+	{
+		this.scene.pushMatrix();
+			
+		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+
+		super.display();
+		this.scene.popMatrix();
 	}
 }
 
