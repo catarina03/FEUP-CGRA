@@ -61,6 +61,7 @@ class MyScene extends CGFscene {
         this.displayVehicle = false;
         this.displayCube = true;
         this.speedFactor = 1;
+        this.scaleFactor = 1;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);

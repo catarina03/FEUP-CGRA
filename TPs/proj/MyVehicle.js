@@ -14,9 +14,9 @@ class MyVehicle extends CGFobject {
 	}
 	initBuffers() {
 		this.vertices = [
-			-0.5, 0, -0.5,	//0
-			0.5, 0, -0.5,	//1
-			0, 0, 1	//2
+			-1, 0, -0.5,	//0
+			1, 0, -0.5,	//1
+			0, 0, 0.5	//2
 		];
 
 		//Counter-clockwise reference of vertices
@@ -64,7 +64,7 @@ class MyVehicle extends CGFobject {
 	display()
 	{
 		this.scene.pushMatrix();
-			
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 		this.scene.translate(this.pos[0], 0, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
 
