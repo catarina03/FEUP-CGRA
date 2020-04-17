@@ -25,6 +25,7 @@ class MyScene extends CGFscene {
 
         // Textures
         this.earth = new CGFtexture(this, 'images/earth.jpg');
+        this.cubemap = new CGFtexture(this, 'images/cubemap.png');
 
         //Material
         this.material = new CGFappearance(this);
@@ -35,11 +36,19 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
+        this.material2 = new CGFappearance(this);
+        this.material2.setAmbient(0.1, 0.1, 0.1, 1);
+        this.material2.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.material2.setSpecular(0.1, 0.1, 0.1, 1);
+        this.material2.setShininess(10.0);
+        this.material2.setTexture(this.cubemap);
+        this.material2.setTextureWrap('REPEAT', 'REPEAT');
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
-
         this.cylinder = new MyCylinder(this, 9);
+        this.cube = new MyCubeMap(this);
         //this.vehicle = new MyVehicle(this);
 
         //Objects connected to MyInterface
@@ -47,9 +56,10 @@ class MyScene extends CGFscene {
         
         // GUI
         this.displayNormals = false;
-        this.displaySphere = true;
+        this.displaySphere = false;
         this.displayCylinder = false;
         this.displayVehicle = false;
+        this.displayCube = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -103,6 +113,15 @@ class MyScene extends CGFscene {
         }
         if (this.displayNormals)
             this.cylinder.enableNormalViz();
+
+        //UnitCube
+        if (this.displayCube){
+            this.scale(50, 50, 50);
+            this.material2.apply();
+            this.cube.display();
+        }
+        if (this.displayNormals)
+            this.cube.enableNormalViz();
 
         //Vehicle
         if(this.displayVehicle)

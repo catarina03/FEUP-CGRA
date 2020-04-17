@@ -22,6 +22,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
         this.gui.add(this.scene, 'displaySphere').name("Display sphere");
         this.gui.add(this.scene, 'displayCylinder').name("Display cylinder");
+        this.gui.add(this.scene, 'displayCube').name("Display cube");
         this.gui.add(this.scene, 'displayVehicle').name("Display vehicle");
 
         return true;
