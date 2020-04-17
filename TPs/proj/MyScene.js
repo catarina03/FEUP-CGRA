@@ -91,6 +91,17 @@ class MyScene extends CGFscene {
             keysPressed=true;
         }
 
+        if (this.gui.isKeyPressed("KeyD")) {
+            text+=" D ";
+            keysPressed=true;
+        }
+
+        if (this.gui.isKeyPressed("KeyA")){
+            text+=" A ";
+            keysPressed=true;
+        }
+
+
         if (keysPressed){
             console.log(text);
         }
