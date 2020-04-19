@@ -1,6 +1,6 @@
 # FEUP-CGRA
 
-Exercises and projects developed during the Computer Graphics curricular unit @ FEUP.
+Exercises and projects developed during the Computer Graphics curricular unit @ FEUP.  
 All code written in collaboration with [Ana Barros](https://github.com/anaines14)
 
 ## General Info
