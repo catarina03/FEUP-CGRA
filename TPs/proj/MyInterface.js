@@ -23,6 +23,10 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayCylinder').name("Display cylinder");
         this.gui.add(this.scene, 'displayCube').name("Display cube");
         this.gui.add(this.scene, 'displayVehicle').name("Display vehicle");
+        
+        //Slider element in GUI
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
 
         //Dropdown for textures
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));

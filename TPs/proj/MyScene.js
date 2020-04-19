@@ -64,6 +64,8 @@ class MyScene extends CGFscene {
         this.displayVehicle = false;
         this.displayCube = true;
         this.selectedTexture = -1;
+        this.speedFactor = 1;
+        this.scaleFactor = 1;
 
         this.textures = [this.test, this.cubemap, this.lava];
 
@@ -72,6 +74,7 @@ class MyScene extends CGFscene {
             'CubeMap': 1,
             'Lava': 2
         };
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -96,23 +99,25 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.vehicle.vel += 1;
+            this.vehicle.accelerate(0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.vehicle.vel -= 1;
+            this.vehicle.accelerate(-0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" D ";
             keysPressed=true;
+            this.vehicle.turn(-10);
         }
 
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
+            this.vehicle.turn(10);
         }
 
         if (this.gui.isKeyPressed("KeyR")){
@@ -120,6 +125,8 @@ class MyScene extends CGFscene {
             keysPressed=true;
             this.vehicle.reset();
         }
+        
+        this.vehicle.update();
 
         if (keysPressed){
             console.log(text);
@@ -176,9 +183,11 @@ class MyScene extends CGFscene {
 
         //UnitCube
         if (this.displayCube){
+            this.pushMatrix();
             this.scale(50, 50, 50);
             this.cubeMaterial.apply();
             this.cube.display();
+            this.popMatrix();
 
             if (this.displayNormals)
                 this.cube.enableNormalViz();
