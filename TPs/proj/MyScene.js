@@ -23,9 +23,12 @@ class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
-        // Textures
+        //Textures
         this.earth = new CGFtexture(this, 'images/earth.jpg');
+        this.test = new CGFtexture(this, 'images/test.png');
         this.cubemap = new CGFtexture(this, 'images/cubemap.png');
+        this.lava = new CGFtexture(this, 'images/lava.png');
+
 
         //Material
         this.material = new CGFappearance(this);
@@ -36,13 +39,14 @@ class MyScene extends CGFscene {
         this.material.setTexture(this.earth);
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.material2 = new CGFappearance(this);
-        this.material2.setAmbient(0.1, 0.1, 0.1, 1);
-        this.material2.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.material2.setSpecular(0.1, 0.1, 0.1, 1);
-        this.material2.setShininess(10.0);
-        this.material2.setTexture(this.cubemap);
-        this.material2.setTextureWrap('REPEAT', 'REPEAT');
+        this.cubeMaterial = new CGFappearance(this);
+        this.cubeMaterial.setAmbient(1, 1, 1, 1);
+        this.cubeMaterial.setDiffuse(0, 0, 0, 1);
+        this.cubeMaterial.setSpecular(0, 0, 0, 1);
+        this.cubeMaterial.setShininess(10.0);
+        this.cubeMaterial.setTexture(this.cubemap); //default
+        this.cubeMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -51,15 +55,23 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
 
-        //Objects connected to MyInterface
-        this.displayAxis = true;
-        
+
         // GUI
+        this.displayAxis = true;
         this.displayNormals = false;
         this.displaySphere = false;
         this.displayCylinder = false;
         this.displayVehicle = false;
         this.displayCube = true;
+        this.selectedTexture = -1;
+
+        this.textures = [this.test, this.cubemap, this.lava];
+
+        this.texturesIds = {
+            'Test': 0,
+            'CubeMap': 1,
+            'Lava': 2
+        };
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -84,11 +96,13 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
+            this.vehicle.vel += 1;
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
+            this.vehicle.vel -= 1;
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
@@ -101,15 +115,25 @@ class MyScene extends CGFscene {
             keysPressed=true;
         }
 
+        if (this.gui.isKeyPressed("KeyR")){
+            text+=" R ";
+            keysPressed=true;
+            this.vehicle.reset();
+        }
 
         if (keysPressed){
             console.log(text);
         }
     }
+
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
         this.checkKeys();
+    }
+
+    updateAppliedTexture() {
+        this.cubeMaterial.setTexture(this.textures[this.selectedTexture]);
     }
 
     display() {
@@ -122,6 +146,8 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
+
+        //this.lights[0].update() 
         
         // Draw axis
         if (this.displayAxis)
@@ -151,7 +177,7 @@ class MyScene extends CGFscene {
         //UnitCube
         if (this.displayCube){
             this.scale(50, 50, 50);
-            this.material2.apply();
+            this.cubeMaterial.apply();
             this.cube.display();
 
             if (this.displayNormals)
