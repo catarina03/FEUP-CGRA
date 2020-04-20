@@ -29,7 +29,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
 
         //Dropdown for textures
-        this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
+        this.gui.add(this.scene, 'selectedTexture', this.scene.texturesIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
         
         this.initKeys();
 

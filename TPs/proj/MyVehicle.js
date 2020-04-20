@@ -46,6 +46,7 @@ class MyVehicle extends CGFobject {
 	accelerate(val)
 	{
 		this.vel += val;
+		if (this.vel < 0) this.vel = 0;
 	}
 
 	turn(val)

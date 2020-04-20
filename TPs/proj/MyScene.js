@@ -63,7 +63,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayVehicle = false;
         this.displayCube = true;
-        this.selectedTexture = -1;
+        this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
 
@@ -154,7 +154,7 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
-        //this.lights[0].update() 
+        this.lights[0].update() 
         
         // Draw axis
         if (this.displayAxis)
