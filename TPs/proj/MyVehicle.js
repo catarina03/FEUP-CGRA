@@ -11,6 +11,8 @@ class MyVehicle extends CGFobject {
 		this.ang = 0;
 		this.vel = 0;
 		this.pos = [0,0,0];
+
+		this.body = new MySphere(this.scene, 16, 8);
 	}
 	initBuffers() {
 		this.vertices = [
@@ -64,13 +66,18 @@ class MyVehicle extends CGFobject {
 
 	display()
 	{
+		//Body of the Airship
 		this.scene.pushMatrix();
-		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-		this.scene.translate(this.pos[0], 0, this.pos[2]);
-		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+		//this.scene.translate(0, 10, 0);
+		this.scene.scale(1, 1, 2);
+		this.body.display();
 
-		super.display();
-		this.scene.popMatrix();
+		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+		//this.scene.translate(this.pos[0], 0, this.pos[2]);
+		//this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+
+		//super.display();
+		//this.scene.popMatrix();
 	}
 }
 

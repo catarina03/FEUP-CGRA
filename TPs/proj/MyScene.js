@@ -55,14 +55,16 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
 
+        //this.experiment = new MySphere(this)
+
 
         // GUI
         this.displayAxis = true;
         this.displayNormals = false;
         this.displaySphere = false;
         this.displayCylinder = false;
-        this.displayVehicle = false;
-        this.displayCube = true;
+        this.displayVehicle =true;
+        this.displayCube = false;
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
@@ -154,7 +156,7 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
-        this.lights[0].update() 
+        //this.lights[0].update() 
         
         // Draw axis
         if (this.displayAxis)
@@ -198,6 +200,8 @@ class MyScene extends CGFscene {
         //Vehicle
         if(this.displayVehicle)
             this.vehicle.display();
+
+        
         // ---- END Primitive drawing section
     }
 }
