@@ -6,46 +6,21 @@
 class MyVehicle extends CGFobject {
 	constructor(scene) {
 		super(scene);
-		this.initBuffers();
+		//this.initBuffers();
 
 		this.ang = 0;
 		this.vel = 0;
 		this.pos = [0,0,0];
 
-		this.body = new MySphere(this.scene, 16, 8);
-		this.rudder1 = new MyRudder(this.scene);
-		this.rudder2 = new MyRudder(this.scene);
-		this.rudder3 = new MyRudder(this.scene);
-		this.rudder4 = new MyRudder(this.scene);
-		this.cockpit = new MyCockpit(this.scene);
-		this.engine_right = new MyEngine(this.scene);
-		this.engine_left = new MyEngine(this.scene);
+		this.airship = new MyAirshipBody(this.scene);
 
 	}
+
+	/*
 	initBuffers() {
-		this.vertices = [
-			-1, 0, -0.5,	//0
-			1, 0, -0.5,	//1
-			0, 0, 0.5	//2
-		];
-
-		//Counter-clockwise reference of vertices
-		this.indices = [
-			2, 1, 0
-		];
-
-		this.normals = [
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1
-		];
-
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
-		this.primitiveType = this.scene.gl.TRIANGLES;
-
 		this.initGLBuffers();
 	}
+	*/
 
 	update()
 	{
@@ -74,66 +49,12 @@ class MyVehicle extends CGFobject {
 
 	display()
 	{
-		//Body of the Airship
 		this.scene.pushMatrix();
-		//this.scene.translate(0, 10, 0);
-		this.scene.scale(0.5, 0.5, 1);
-		this.body.display();
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+		this.airship.display();
 		this.scene.popMatrix();
-
-		//Rudders
-		this.scene.pushMatrix();
-		this.scene.translate(-0.4, 0, -0.8);
-		this.scene.scale(0.3, 0, 0.3);
-		this.rudder1.display();
-		this.scene.popMatrix();
-
-		this.scene.pushMatrix();
-		this.scene.translate(0.4, 0, -0.8);
-		this.scene.scale(-0.3, 0, 0.3);
-		this.rudder2.display();
-		this.scene.popMatrix();
-
-		this.scene.pushMatrix();
-		this.scene.translate(0, 0.4, -0.8);
-		this.scene.rotate(-Math.PI/2, 0, 0, 1);
-		this.scene.scale(0.3, 0, 0.3);
-		this.rudder3.display();
-		this.scene.popMatrix();
-
-		this.scene.pushMatrix();
-		this.scene.translate(0, -0.4, -0.8);
-		this.scene.rotate(Math.PI/2, 0, 0, 1);
-		this.scene.scale(0.3, 0, 0.3);
-		this.rudder4.display();
-		this.scene.popMatrix();
-
-		//Cockpit of the Airship
-		this.scene.pushMatrix();
-		this.scene.translate(0, -0.5, 0);
-		this.cockpit.display();
-		this.scene.popMatrix();
-
-		//Engines of airship
-		this.scene.pushMatrix();
-		this.scene.translate(0.12, -0.515, -0.25);
-		this.scene.scale(0.08, 0.08, 0.08);
-		this.engine_left.display();
-		this.scene.popMatrix();
-
-		this.scene.pushMatrix();
-		this.scene.translate(-0.12, -0.515, -0.25);
-		this.scene.scale(0.08, 0.08, 0.08);
-		this.engine_left.display();
-		this.scene.popMatrix();
-
-
-		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-		//this.scene.translate(this.pos[0], 0, this.pos[2]);
-		//this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
-
-		//super.display();
-		//this.scene.popMatrix();
 	}
 }
 
