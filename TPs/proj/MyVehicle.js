@@ -13,6 +13,7 @@ class MyVehicle extends CGFobject {
 		this.pos = [0,0,0];
 
 		this.body = new MySphere(this.scene, 16, 8);
+		this.rudder = new MyRudder(this.scene);
 	}
 	initBuffers() {
 		this.vertices = [
@@ -70,7 +71,12 @@ class MyVehicle extends CGFobject {
 		this.scene.pushMatrix();
 		//this.scene.translate(0, 10, 0);
 		this.scene.scale(1, 1, 2);
-		this.body.display();
+		//this.body.display();
+
+		//Rudder
+		this.scene.popMatrix();
+		this.scene.pushMatrix();
+		this.rudder.display();
 
 		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 		//this.scene.translate(this.pos[0], 0, this.pos[2]);
