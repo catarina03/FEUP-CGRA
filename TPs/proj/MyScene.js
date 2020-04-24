@@ -55,7 +55,7 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
 
-        //this.experiment = new MySphere(this)
+        this.experiment = new MyCockpit(this);
 
 
         // GUI
@@ -201,7 +201,7 @@ class MyScene extends CGFscene {
         if(this.displayVehicle)
             this.vehicle.display();
 
-        
+        //this.experiment.display();
         // ---- END Primitive drawing section
     }
 }

@@ -13,7 +13,11 @@ class MyVehicle extends CGFobject {
 		this.pos = [0,0,0];
 
 		this.body = new MySphere(this.scene, 16, 8);
-		this.rudder = new MyRudder(this.scene);
+		this.cockpit = new MyCockpit(this.scene);
+		this.rudder1 = new MyRudder(this.scene);
+		this.rudder2 = new MyRudder(this.scene);
+		this.rudder3 = new MyRudder(this.scene);
+		this.rudder4 = new MyRudder(this.scene);
 	}
 	initBuffers() {
 		this.vertices = [
@@ -70,13 +74,43 @@ class MyVehicle extends CGFobject {
 		//Body of the Airship
 		this.scene.pushMatrix();
 		//this.scene.translate(0, 10, 0);
-		this.scene.scale(1, 1, 2);
-		//this.body.display();
-
-		//Rudder
+		this.scene.scale(0.5, 0.5, 1);
+		this.body.display();
 		this.scene.popMatrix();
+
+		//Rudders
 		this.scene.pushMatrix();
-		this.rudder.display();
+		this.scene.translate(-0.4, 0, -0.9);
+		this.scene.scale(0.3, 0, 0.3);
+		this.rudder1.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+		this.scene.translate(0.4, 0, -0.9);
+		this.scene.scale(-0.3, 0, 0.3);
+		this.rudder2.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+		this.scene.translate(0, 0.4, -0.9);
+		this.scene.rotate(-Math.PI/2, 0, 0, 1);
+		this.scene.scale(0.3, 0, 0.3);
+		this.rudder3.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+		this.scene.translate(0, -0.4, -0.9);
+		this.scene.rotate(Math.PI/2, 0, 0, 1);
+		this.scene.scale(0.3, 0, 0.3);
+		this.rudder4.display();
+		this.scene.popMatrix();
+
+		//Cockpit of the Airship
+		this.scene.pushMatrix();
+		this.scene.translate(0, -0.5, 0);
+		this.cockpit.display();
+		this.scene.popMatrix();
+
 
 		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 		//this.scene.translate(this.pos[0], 0, this.pos[2]);
