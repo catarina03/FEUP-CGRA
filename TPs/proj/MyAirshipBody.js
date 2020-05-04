@@ -18,6 +18,8 @@ class MyAirshipBody extends CGFobject {
 
 		this.ang = 0; 
 		this.velocity = 0;
+
+		this.initMaterials();
 	}
 
 	update(t){
@@ -33,9 +35,20 @@ class MyAirshipBody extends CGFobject {
 		this.velocity = vel;
 	}
 
+	initMaterials(){
+		this.bodyMaterial = new CGFappearance(this.scene);
+		this.bodyMaterial.setAmbient(0.7,0.7,0.7,1);
+        this.bodyMaterial.setDiffuse(0.9,0.9,0.9,1);
+        this.bodyMaterial.setSpecular(0.2,0.2,0.2,1);
+        this.bodyMaterial.setShininess(10);
+        this.bodyMaterial.loadTexture('images/sealBody2.jpg');
+        this.bodyMaterial.setTextureWrap('REPEAT','REPEAT');
+	}
+
 	display(){
 		//Body of the Airship
 		this.scene.pushMatrix();
+		this.bodyMaterial.apply();
 		//this.scene.translate(0, 10, 0);
 		this.scene.scale(0.5, 0.5, 1);
 		this.body.display();
