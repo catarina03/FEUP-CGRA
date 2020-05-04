@@ -137,6 +137,7 @@ class MyScene extends CGFscene {
     update(t){
         //To be done...
         this.checkKeys();
+        this.vehicle.update(t);
     }
 
     updateAppliedTexture() {

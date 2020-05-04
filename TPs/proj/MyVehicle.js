@@ -22,22 +22,31 @@ class MyVehicle extends CGFobject {
 	}
 	*/
 
-	update()
+	update(t)
 	{
 		this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
 		this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
+		this.airship.update(t);
 	}
 
 	accelerate(val)
 	{
 		this.vel += val;
 		if (this.vel < 0) this.vel = 0;
+
+		this.airship.accelerate(this.vel);
 	}
 
 	turn(val)
 	{
-		if(this.vel >= 0)this.ang += val;
-		else this.ang -= val;
+		if(this.vel >= 0){
+			this.ang += val;
+			this.airship.updateRudders(val);
+		}
+		else{
+			this.ang -= val;
+			this.airship.updateRudders(-val);
+		} 
 	}
 
 	reset()
