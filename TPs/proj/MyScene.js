@@ -65,6 +65,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayVehicle =true;
         this.displayCube = false;
+        this.displayTerrain = false;
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
@@ -202,6 +203,12 @@ class MyScene extends CGFscene {
             this.vehicle.display();
 
         
+        //Terrain
+        if(this.displayTerrain){
+            this.material.apply();
+            this.terrain.display();
+        }
+
         // ---- END Primitive drawing section
     }
 }
