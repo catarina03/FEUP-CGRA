@@ -34,7 +34,7 @@ class MyVehicle extends CGFobject {
 		this.vel += val;
 		if (this.vel < 0) this.vel = 0;
 
-		this.airship.accelerate(this.vel);
+		this.airship.accelerate(val);
 	}
 
 	turn(val)

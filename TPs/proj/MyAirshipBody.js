@@ -31,8 +31,9 @@ class MyAirshipBody extends CGFobject {
 		this.ang += value;
 	}
 
-	accelerate(vel){
-		this.velocity = vel;
+	accelerate(val){
+		this.velocity += val;
+		if (this.velocity < 0) this.velocity = 0;
 	}
 
 	initMaterials(){
@@ -42,7 +43,15 @@ class MyAirshipBody extends CGFobject {
         this.bodyMaterial.setSpecular(0.2,0.2,0.2,1);
         this.bodyMaterial.setShininess(10);
         this.bodyMaterial.loadTexture('images/sealBody2.jpg');
-        this.bodyMaterial.setTextureWrap('REPEAT','REPEAT');
+		this.bodyMaterial.setTextureWrap('REPEAT','REPEAT');
+		
+		this.cockpitMaterial = new CGFappearance(this.scene);
+		this.cockpitMaterial.setAmbient(0.7,0.7,0.7,1);
+        this.cockpitMaterial.setDiffuse(0.9,0.9,0.9,1);
+        this.cockpitMaterial.setSpecular(0.2,0.2,0.2,1);
+        this.cockpitMaterial.setShininess(10);
+        this.cockpitMaterial.loadTexture('images/gray.jpg');
+        this.cockpitMaterial.setTextureWrap('REPEAT','REPEAT');
 	}
 
 	display(){
@@ -89,6 +98,7 @@ class MyAirshipBody extends CGFobject {
 
 		//Cockpit of the Airship
 		this.scene.pushMatrix();
+		this.cockpitMaterial.apply();
 		this.scene.translate(0, -0.5, 0);
 		this.cockpit.display();
 		this.scene.popMatrix();
