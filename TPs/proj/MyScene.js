@@ -86,7 +86,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 100, 100), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -159,6 +159,8 @@ class MyScene extends CGFscene {
 
         //this.lights[0].update() 
         
+        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
@@ -205,8 +207,10 @@ class MyScene extends CGFscene {
         
         //Terrain
         if(this.displayTerrain){
+            this.pushMatrix();
             this.material.apply();
             this.terrain.display();
+            this.popMatrix();
         }
 
         // ---- END Primitive drawing section
