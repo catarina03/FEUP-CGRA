@@ -28,6 +28,7 @@ class MyAirshipBody extends CGFobject {
 	}
 
 	updateRudders(){    //TO FIX
+		//if ()
 		if (this.ang + 0.1 < Math.PI/4) {
 			if (this.scene.gui.isKeyPressed("KeyD")){
 				this.ang += 0.1;

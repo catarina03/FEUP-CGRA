@@ -44,6 +44,7 @@ class MyScene extends CGFscene {
         this.cubeMaterial.setDiffuse(0, 0, 0, 1);
         this.cubeMaterial.setSpecular(0, 0, 0, 1);
         this.cubeMaterial.setShininess(10.0);
+        this.cubeMaterial.setEmission(0.5, 0.5, 0.5, 1);
         this.cubeMaterial.setTexture(this.cubemap); //default
         this.cubeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -64,8 +65,8 @@ class MyScene extends CGFscene {
         this.displaySphere = false;
         this.displayCylinder = false;
         this.displayVehicle =true;
-        this.displayCube = false;
-        this.displayTerrain = false;
+        this.displayCube = true;
+        this.displayTerrain = true;
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
@@ -86,7 +87,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 100, 100), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -217,7 +218,7 @@ class MyScene extends CGFscene {
         //Terrain
         if(this.displayTerrain){
             this.pushMatrix();
-            this.translate(0,-2,0);
+            this.translate(0,-15,0);
             this.material.apply();
             this.terrain.display();
             this.popMatrix();
