@@ -43,7 +43,9 @@ class MyAirshipBody extends CGFobject {
 				this.ang -= 0.1;
 			}
 			else{
-				this.ang += 0.1;
+				if (this.ang < Math.PI/4){
+					this.ang += 0.1;
+				}
 			}
 		}
 		//this.ang = this.ang % 2*Math.PI;
