@@ -54,6 +54,8 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this, 16);
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
+        this.terrain = new MyTerrain(this);
+        //this.experiment = new MySphere(this)
 
 
         // GUI
@@ -63,6 +65,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displayVehicle =true;
         this.displayCube = false;
+        this.displayTerrain = false;
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
@@ -83,7 +86,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(100, 100, 100), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -165,6 +168,8 @@ class MyScene extends CGFscene {
 
         //this.lights[0].update() 
         
+        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
@@ -207,6 +212,16 @@ class MyScene extends CGFscene {
         //Vehicle
         if(this.displayVehicle)
             this.vehicle.display();
+      
+        
+        //Terrain
+        if(this.displayTerrain){
+            this.pushMatrix();
+            this.translate(0,-2,0);
+            this.material.apply();
+            this.terrain.display();
+            this.popMatrix();
+        }
 
         // ---- END Primitive drawing section
     }
