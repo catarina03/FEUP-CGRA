@@ -39,9 +39,9 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot){
 			this.pilotAngle += this.delta * 360/5;
-			this.pos[0] = this.center[0] + 5*Math.sin(this.pilotAngle * Math.PI /180);
-			this.pos[2] = this.center[2] + 5*Math.cos(this.pilotAngle * Math.PI / 180);
-			this.ang = (this.pilotAngle + 90);
+			this.pos[0] = this.center[0] - 5*Math.cos(this.pilotAngle * Math.PI /180);
+			this.pos[2] = this.center[2] + 5*Math.sin(this.pilotAngle * Math.PI / 180);
+			this.ang = this.pilotAngle;
 			this.airship.update(t);
 			this.airship.updateRudders();
 		}
@@ -59,8 +59,8 @@ class MyVehicle extends CGFobject {
 		this.pilotAngle = (this.ang - 90) * Math.PI/180;
 		var directionalAngle = (this.ang + 90) * Math.PI/180;
 
-		let x = this.pos[0] + Math.sin(directionalAngle)*this.radius; //(Math.sqrt(2)/2);
-		let z = this.pos[2] + Math.cos(directionalAngle)*this.radius; //(Math.sqrt(2)/2);
+		let x = this.pos[0] + Math.sin(directionalAngle)*this.radius;
+		let z = this.pos[2] + Math.cos(directionalAngle)*this.radius; 
 		
 		this.center = [x, 0, z];
 	}
@@ -75,28 +75,14 @@ class MyVehicle extends CGFobject {
 
 	turn(val)
 	{
-		//this.ang %= 360;
-		//if (!this.autoPilot){
-			if(this.vel >= 0){
-				this.ang += val;
-				this.ang += val;
-				this.ang %= 360;
-				//this.airship.turn(-val);
-			}
-			//else{
-			//	this.ang -= val;
-				//this.airship.turn(-val);
-			//}
-			/*
-		}
-		else{
+		if(this.vel >= 0){
+			this.ang += val;
 			this.ang += val;
 			this.ang %= 360;
 		}
-		*/
 	}
 
-	reset()    //RESET THE RUDDERS TOO
+	reset()  
 	{
 		this.ang = 0;
 		this.vel = 0;

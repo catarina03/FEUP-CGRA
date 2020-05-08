@@ -218,7 +218,7 @@ class MyScene extends CGFscene {
         //Terrain
         if(this.displayTerrain){
             this.pushMatrix();
-            this.translate(0,-15,0);
+            this.translate(0,0,0);
             this.material.apply();
             this.terrain.display();
             this.popMatrix();
