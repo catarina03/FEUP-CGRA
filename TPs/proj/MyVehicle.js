@@ -6,84 +6,110 @@
 class MyVehicle extends CGFobject {
 	constructor(scene) {
 		super(scene);
-		this.initBuffers();
+		//this.initBuffers();
 
 		this.ang = 0;
 		this.vel = 0;
 		this.pos = [0,0,0];
 
-		this.body = new MySphere(this.scene, 16, 8);
-		this.rudder = new MyRudder(this.scene);
+		this.center = [0, 0, 0];
+		this.pilotAngle = 0;
+		this.position = 0;
+		this.orientation = 0;
+		this.radius = 5;
+		this.autoPilot = false;
+
+		this.lastUpdate = 0;
+		this.elapsedTime = 0;
+
+		this.airship = new MyAirshipBody(this.scene);
 	}
+
+	/*
 	initBuffers() {
-		this.vertices = [
-			-1, 0, -0.5,	//0
-			1, 0, -0.5,	//1
-			0, 0, 0.5	//2
-		];
-
-		//Counter-clockwise reference of vertices
-		this.indices = [
-			2, 1, 0
-		];
-
-		this.normals = [
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1
-		];
-
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
-		this.primitiveType = this.scene.gl.TRIANGLES;
-
 		this.initGLBuffers();
 	}
+	*/
 
-	update()
+	update(t)
 	{
-		this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
-		this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
+		if (this.lastUpdate==0) this.lastUpdate = t;
+        this.elapsedTime = (t - this.lastUpdate)/1000.0;
+        this.lastUpdate = t;
+
+		if (this.autoPilot){
+			this.pos[0] = this.center[0] - 5*Math.cos(this.ang * Math.PI /180);
+			this.pos[2] = this.center[2] + 5*Math.sin(this.ang * Math.PI / 180);
+			//this.turn(this.elapsedTime * 360/5.0);//elapsedTime * 360/5);
+			this.turn(1);
+			this.airship.update(t);
+			this.airship.updateRudders();
+		}
+		else{
+			this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
+			this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
+			this.airship.update(t);
+			this.airship.updateRudders();
+		}
+	}
+
+	startAutoPilot(){
+		this.autoPilot = true; 
+		
+		//this.orientation = this.ang;
+		this.pilotAngle = (this.ang + 90) * Math.PI/180;
+
+		let x = this.pos[0] + Math.sin(this.pilotAngle)*this.radius; //(Math.sqrt(2)/2);
+		let z = this.pos[2] + Math.cos(this.pilotAngle)*this.radius; //(Math.sqrt(2)/2);
+		
+		this.center = [x, 0, z];
+
+		//this.position = this.pos;
 	}
 
 	accelerate(val)
 	{
 		this.vel += val;
 		if (this.vel < 0) this.vel = 0;
+
+		this.airship.accelerate(val);
 	}
 
 	turn(val)
 	{
-		if(this.vel >= 0)this.ang += val;
-		else this.ang -= val;
+		//this.ang %= 360;
+		if (!this.autoPilot){
+			if(this.vel >= 0){
+				this.ang += val;
+				//this.airship.turn(-val);
+			}
+			else{
+				this.ang -= val;
+				//this.airship.turn(-val);
+			} 
+		}
+		else{
+			this.ang += val;
+			this.ang %= 360;
+		}
 	}
 
-	reset()
+	reset()    //RESET THE RUDDERS TOO
 	{
 		this.ang = 0;
 		this.vel = 0;
 		this.pos = [0,0,0];
+		this.autoPilot = false;
 	}
 
 	display()
 	{
-		//Body of the Airship
 		this.scene.pushMatrix();
-		//this.scene.translate(0, 10, 0);
-		this.scene.scale(1, 1, 2);
-		//this.body.display();
-
-		//Rudder
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+		this.airship.display();
 		this.scene.popMatrix();
-		this.scene.pushMatrix();
-		this.rudder.display();
-
-		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-		//this.scene.translate(this.pos[0], 0, this.pos[2]);
-		//this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
-
-		//super.display();
-		//this.scene.popMatrix();
 	}
 }
 

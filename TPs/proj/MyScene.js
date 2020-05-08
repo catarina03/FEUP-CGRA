@@ -55,8 +55,6 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
 
-        //this.experiment = new MySphere(this)
-
 
         // GUI
         this.displayAxis = true;
@@ -101,25 +99,35 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.vehicle.accelerate(0.05 * this.speedFactor);
+            if (!this.vehicle.autoPilot)
+                this.vehicle.accelerate(0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
-            this.vehicle.accelerate(-0.05 * this.speedFactor);
+            if (!this.vehicle.autoPilot)
+                this.vehicle.accelerate(-0.05 * this.speedFactor);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" D ";
             keysPressed=true;
-            this.vehicle.turn(-10);
+            if (!this.vehicle.autoPilot)
+                this.vehicle.turn(-10);
         }
 
         if (this.gui.isKeyPressed("KeyA")){
             text+=" A ";
             keysPressed=true;
-            this.vehicle.turn(10);
+            if (!this.vehicle.autoPilot)
+                this.vehicle.turn(10);
+        }
+
+        if (this.gui.isKeyPressed("KeyP")){
+            text+=" P ";
+            keysPressed=true;
+            this.vehicle.startAutoPilot();
         }
 
         if (this.gui.isKeyPressed("KeyR")){
@@ -139,6 +147,7 @@ class MyScene extends CGFscene {
     update(t){
         //To be done...
         this.checkKeys();
+        this.vehicle.update(t);
     }
 
     updateAppliedTexture() {
@@ -201,7 +210,6 @@ class MyScene extends CGFscene {
         if(this.displayVehicle)
             this.vehicle.display();
 
-        
         // ---- END Primitive drawing section
     }
 }
