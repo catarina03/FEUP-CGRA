@@ -1,11 +1,24 @@
+const SupplyStates = {
+    INACTIVE: 0,
+    FALLING: 1,
+    LANDED: 2
+};
+
 /**
  * MySupply
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MySuplly extends CGFobject {
+class MySupply extends CGFobject {
 	constructor(scene, coords) {
         super(scene);
+
+        this.position = [0, 0, 0];
+        this.speed = 0;
+        this.state = SupplyStates.INACTIVE;
+
+		this.previousTime = 0;
+		this.currentTime = 0;
 
         this.face1 = new MyQuad(this.scene);
         this.face2 = new MyQuad(this.scene);
@@ -40,7 +53,6 @@ class MySuplly extends CGFobject {
         this.downMaterial.setShininess(10.0);
         this.downMaterial.loadTexture('images/mineBottom.png');
         this.downMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
     }
     display(){
         //Back
@@ -90,6 +102,54 @@ class MySuplly extends CGFobject {
         this.scene.popMatrix();
     }
 	
-	updateBuffers(complexity){};
+    updateBuffers(complexity){};
+    
+    update(t){
+        //Recalculate position according to elapsed time
+        
+        if(this.state == SupplyStates.FALLING){
+            if (this.previousTime == 0) this.previousTime = t;
+            this.deltaTime = (t - this.previousTime)/1000.0;
+            this.previousTime = t;
+        }
+
+        this.deltaDistance = deltaTime * speed;
+
+        this.position[1] -= this.deltaDistance;
+
+        if(this.position[1] <= 0){
+            this.position[1] == 0;
+            this.state == SupplyStates.LANDED;
+        }
+    }
+
+    display(){
+        this.translate(0, -this.deltaDistance, 0);
+
+        if(this.state == SupplyStates.FALLING){
+            this.displayFalling();
+        }
+
+        else if(this.state == SupplyStates.LANDED){
+            this.displayLanded();
+        }
+    }
+
+    displayFalling(){}
+
+    displayLanded(){}
+
+    drop(dropPosition){
+        this.position = dropPosition;
+        this.speed = this.position[1] / (3*1000);
+        this.state = SupplyStates.FALLING;
+    }
+
+    reset(){
+        this.position = [0,0,0];
+        this.speed = 0;
+        this.state = SupplyStates.INACTIVE;
+    }
+
 }
 

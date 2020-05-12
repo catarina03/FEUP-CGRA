@@ -57,6 +57,13 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this);
 
+        this.supply1 = new MySupply(this);
+        this.supply2 = new MySupply(this);
+        this.supply3 = new MySupply(this);
+        this.supply4 = new MySupply(this);
+        this.supply5 = new MySupply(this);
+        this.nSuppliesDelivered = 0;
+        this.supplies = [this.supply1, this.supply2, this.supply3, this.supply4, this.supply5];
 
         // GUI
         this.displayAxis = true;
@@ -138,6 +145,14 @@ class MyScene extends CGFscene {
             text+=" R ";
             keysPressed=true;
             this.vehicle.reset();
+            //Reset supplies
+        }
+
+        if (this.gui.isKeyPressed("KeyL")){
+            text+=" L ";
+            keysPressed=true;
+            //this.supplies[this.nSuppliesDelivered].drop(); //mandar a position
+            this.nSuppliesDelivered++;
         }
 
         if (keysPressed){
@@ -150,6 +165,11 @@ class MyScene extends CGFscene {
         //To be done...
         this.checkKeys();
         this.vehicle.update(t);
+        this.supply1.update(t);
+        this.supply2.update(t);
+        this.supply3.update(t);
+        this.supply4.update(t);
+        this.supply5.update(t);
     }
 
     updateAppliedTexture() {
