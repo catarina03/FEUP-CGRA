@@ -113,7 +113,7 @@ class MySupply extends CGFobject {
             this.previousTime = t;
         }
 
-        this.deltaDistance = deltaTime * speed;
+        this.deltaDistance = this.deltaTime * this.speed;
 
         this.position[1] -= this.deltaDistance;
 

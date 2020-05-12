@@ -14,7 +14,7 @@ class MyEngine extends CGFobject {
 	}
 
 	updateHelix(angle){
-		this.ang = Math.PI * angle / 180;
+		this.ang = angle;
 	}
 
 	display(){
@@ -24,7 +24,7 @@ class MyEngine extends CGFobject {
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.scene.rotate(this.ang, 0, 0, 1);
+		this.scene.rotate(this.ang * Math.PI/180, 0, 0, 1);
 		this.scene.translate(-0.25, 0.5, -1);
 		this.scene.scale(0.33, 0.33, 0);
 		this.scene.rotate(Math.PI/2, 1, 0, 0);
@@ -32,7 +32,7 @@ class MyEngine extends CGFobject {
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.scene.rotate(this.ang, 0, 0, 1);
+		this.scene.rotate(this.ang * Math.PI/180, 0, 0, 1);
 		this.scene.translate(0.25, -0.5, -1);
 		this.scene.scale(-0.33, -0.33, 0);
 		this.scene.rotate(Math.PI/2, 1, 0, 0);

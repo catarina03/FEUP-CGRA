@@ -8,13 +8,9 @@ class MyAirshipBody extends CGFobject {
 		super(scene);
 
 		this.body = new MySphere(this.scene, 16, 8);
-		this.rudder1 = new MyRudder(this.scene);
-		this.rudder2 = new MyRudder(this.scene);
-		this.rudder3 = new MyRudder(this.scene);
-		this.rudder4 = new MyRudder(this.scene);
+		this.rudder = new MyRudder(this.scene);
 		this.cockpit = new MyCockpit(this.scene);
-		this.engine_right = new MyEngine(this.scene);
-		this.engine_left = new MyEngine(this.scene);
+		this.engine = new MyEngine(this.scene);
 
 		this.ang = 0; 
 		this.velocity = 0;
@@ -23,12 +19,10 @@ class MyAirshipBody extends CGFobject {
 	}
 
 	update(t){
-		this.engine_right.updateHelix(t * this.velocity);
-		this.engine_left.updateHelix(t * this.velocity);
+		this.engine.ang = t * (this.velocity + 0.03);
 	}
 
-	updateRudders(){    //TO FIX
-
+	updateRudders(){ 
 		if (this.scene.gui.isKeyPressed("KeyD")){
 			this.ang = 45;
 		}
@@ -40,54 +34,6 @@ class MyAirshipBody extends CGFobject {
 				this.ang = 0;
 			}
 		}
-
-		/*
-	
-		if (this.ang + 0.1 < Math.PI/4) {
-			if (this.scene.gui.isKeyPressed("KeyD")){
-				this.ang += 0.1;
-			}
-			else{
-				if (this.ang > -Math.PI/4){
-					this.ang -= 0.1;
-				}
-			}
-		}
-		if (this.ang + 0.1 > -Math.PI/4) {
-			if (this.scene.gui.isKeyPressed("KeyA")){
-				this.ang -= 0.1;
-			}
-			else{
-				if (this.ang < Math.PI/4){
-					this.ang += 0.1;
-				}
-			}
-		}
-		*/
-		//this.ang = this.ang % 2*Math.PI;
-
-		/*
-		if (this.scene.gui.isKeyPressed("KeyD")){
-			if (this.ang < Math.PI/4) this.ang += 0.1;
-		}
-		else if (this.scene.gui.isKeyPressed("KeyA")){
-			if (this.ang > -Math.PI/4) this.ang -= 0.1;
-		}
-
-		if (!this.scene.gui.isKeyPressed("KeyD")){
-			//if (this.angle > 0){
-				this.ang -= 0.1;
-			//}
-		}
-		*/
-		/*
-		if (this.angle > 0){
-			this.ang += 0.1;
-		}
-		if (this.angle < 0){
-			this.ang += 0.1;
-		}
-		*/
 	}
 
 	accelerate(val){
@@ -127,13 +73,13 @@ class MyAirshipBody extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(-0.4, 0, -0.8);
 		this.scene.scale(0.3, 0, 0.3);
-		this.rudder1.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
 		this.scene.translate(0.4, 0, -0.8);
 		this.scene.scale(-0.3, 0, 0.3);
-		this.rudder2.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 
 		//Vertical
@@ -143,7 +89,7 @@ class MyAirshipBody extends CGFobject {
 		this.scene.rotate(-Math.PI/2, 0, 0, 1);
 		this.scene.scale(0.3, 0, 0.3);
 		this.scene.translate(0, 0, -1);
-		this.rudder3.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
@@ -152,7 +98,7 @@ class MyAirshipBody extends CGFobject {
 		this.scene.rotate(Math.PI/2, 0, 0, 1);
 		this.scene.scale(0.3, 0, 0.3);
 		this.scene.translate(0, 0, -1);
-		this.rudder4.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 
 
@@ -168,13 +114,13 @@ class MyAirshipBody extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
-		this.engine_right.display();
+		this.engine.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
 		this.scene.translate(-0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
-		this.engine_left.display();
+		this.engine.display();
 		this.scene.popMatrix();
 	}
 }

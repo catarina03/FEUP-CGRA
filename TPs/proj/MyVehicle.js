@@ -79,7 +79,6 @@ class MyVehicle extends CGFobject {
 		this.vel = 0;
 		this.pos = [0,0,0];
 		this.autoPilot = false;
-		this.airship.ang = 0;
 	}
 
 	display()
