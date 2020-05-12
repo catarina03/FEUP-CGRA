@@ -40,11 +40,11 @@ class MyScene extends CGFscene {
         this.material.setTextureWrap('REPEAT', 'REPEAT');
 
         this.cubeMaterial = new CGFappearance(this);
-        this.cubeMaterial.setAmbient(1, 1, 1, 1);
+        this.cubeMaterial.setAmbient(0.7, 0.7, 0.7, 1);
         this.cubeMaterial.setDiffuse(0, 0, 0, 1);
         this.cubeMaterial.setSpecular(0, 0, 0, 1);
         this.cubeMaterial.setShininess(10.0);
-        this.cubeMaterial.setEmission(0.5, 0.5, 0.5, 1);
+        this.cubeMaterial.setEmission(0.7, 0.7, 0.7, 1);
         this.cubeMaterial.setTexture(this.cubemap); //default
         this.cubeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -93,7 +93,8 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 20, 40), vec3.fromValues(-10, 0, -10));
+        //this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 20, 40), vec3.fromValues(-10, 0, -10));
+        this.camera = new CGFcamera(0.8, 0.1, 500, vec3.fromValues(30, 20, 30), vec3.fromValues(0, 10, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);

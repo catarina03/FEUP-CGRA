@@ -43,20 +43,28 @@ class MyAirshipBody extends CGFobject {
 
 	initMaterials(){
 		this.bodyMaterial = new CGFappearance(this.scene);
-		this.bodyMaterial.setAmbient(0.7,0.7,0.7,1);
+		this.bodyMaterial.setAmbient(0.8,0.8,0.8,1);
         this.bodyMaterial.setDiffuse(0.9,0.9,0.9,1);
-        this.bodyMaterial.setSpecular(0.2,0.2,0.2,1);
+        this.bodyMaterial.setSpecular(0.3,0.3,0.3,1);
         this.bodyMaterial.setShininess(10);
-        this.bodyMaterial.loadTexture('images/sealBody2.jpg');
+        this.bodyMaterial.loadTexture('images/sealBody.jpg');
 		this.bodyMaterial.setTextureWrap('REPEAT','REPEAT');
 		
-		this.cockpitMaterial = new CGFappearance(this.scene);
-		this.cockpitMaterial.setAmbient(0.7,0.7,0.7,1);
-        this.cockpitMaterial.setDiffuse(0.9,0.9,0.9,1);
-        this.cockpitMaterial.setSpecular(0.2,0.2,0.2,1);
-        this.cockpitMaterial.setShininess(10);
-        this.cockpitMaterial.loadTexture('images/gray.jpg');
-        this.cockpitMaterial.setTextureWrap('REPEAT','REPEAT');
+		this.grayMaterial = new CGFappearance(this.scene);
+		this.grayMaterial.setAmbient(0.7,0.7,0.7,1);
+        this.grayMaterial.setDiffuse(0.6,0.6,0.6,1);
+        this.grayMaterial.setSpecular(0.2,0.2,0.2,1);
+        this.grayMaterial.setShininess(10);
+        this.grayMaterial.loadTexture('images/gray.jpg');
+		this.grayMaterial.setTextureWrap('REPEAT','REPEAT');
+		
+		this.blackMaterial = new CGFappearance(this.scene);
+		this.blackMaterial.setAmbient(0.2,0.2,0.2,1);
+        this.blackMaterial.setDiffuse(0.6,0.6,0.6,1);
+        this.blackMaterial.setSpecular(0.1,0.1,0.1,1);
+        this.blackMaterial.setShininess(10);
+        this.blackMaterial.loadTexture('images/black.png');
+		this.blackMaterial.setTextureWrap('REPEAT','REPEAT');
 	}
 
 	display(){
@@ -71,19 +79,22 @@ class MyAirshipBody extends CGFobject {
 		//Rudders
 		//Horizontal
 		this.scene.pushMatrix();
+		this.blackMaterial.apply();
 		this.scene.translate(-0.4, 0, -0.8);
 		this.scene.scale(0.3, 0, 0.3);
 		this.rudder.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
+		this.blackMaterial.apply();
 		this.scene.translate(0.4, 0, -0.8);
 		this.scene.scale(-0.3, 0, 0.3);
 		this.rudder.display();
 		this.scene.popMatrix();
 
 		//Vertical
-		this.scene.pushMatrix();
+		this.scene.pushMatrix();		
+		this.blackMaterial.apply();
 		this.scene.translate(0, 0.4, -0.5);
 		this.scene.rotate(this.ang * Math.PI/180, 0, 1, 0);
 		this.scene.rotate(-Math.PI/2, 0, 0, 1);
@@ -93,6 +104,7 @@ class MyAirshipBody extends CGFobject {
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
+		this.blackMaterial.apply();
 		this.scene.translate(0, -0.4, -0.5);
 		this.scene.rotate(this.ang * Math.PI/180, 0, 1, 0);
 		this.scene.rotate(Math.PI/2, 0, 0, 1);
@@ -104,7 +116,6 @@ class MyAirshipBody extends CGFobject {
 
 		//Cockpit of the Airship
 		this.scene.pushMatrix();
-		this.cockpitMaterial.apply();
 		this.scene.translate(0, -0.5, 0);
 		this.cockpit.display();
 		this.scene.popMatrix();
@@ -112,12 +123,14 @@ class MyAirshipBody extends CGFobject {
 
 		//Engines of airship
 		this.scene.pushMatrix();
+		this.blackMaterial.apply();
 		this.scene.translate(0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
 		this.engine.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
+		this.blackMaterial.apply();
 		this.scene.translate(-0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
 		this.engine.display();

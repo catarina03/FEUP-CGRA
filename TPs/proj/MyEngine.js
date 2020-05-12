@@ -7,9 +7,8 @@ class MyEngine extends CGFobject {
 	constructor(scene) {
 		super(scene);
 		this.sphere = new MySphere(this.scene, 16, 8);
-		this.rudder_top = new MyRudder(this.scene);
-		this.rudder_bottom = new MyRudder(this.scene);
-		
+		this.rudder = new MyRudder(this.scene);
+
 		this.ang = 0;
 	}
 
@@ -28,7 +27,7 @@ class MyEngine extends CGFobject {
 		this.scene.translate(-0.25, 0.5, -1);
 		this.scene.scale(0.33, 0.33, 0);
 		this.scene.rotate(Math.PI/2, 1, 0, 0);
-		this.rudder_top.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
@@ -36,7 +35,7 @@ class MyEngine extends CGFobject {
 		this.scene.translate(0.25, -0.5, -1);
 		this.scene.scale(-0.33, -0.33, 0);
 		this.scene.rotate(Math.PI/2, 1, 0, 0);
-		this.rudder_bottom.display();
+		this.rudder.display();
 		this.scene.popMatrix();
 	}
 }
