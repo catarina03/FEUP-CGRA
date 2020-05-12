@@ -56,7 +56,6 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this);
-        //this.experiment = new MySphere(this)
 
 
         // GUI
@@ -69,7 +68,7 @@ class MyScene extends CGFscene {
         this.displayTerrain = true;
         this.selectedTexture = 0;
         this.speedFactor = 1;
-        this.scaleFactor = 1;
+        this.scaleFactor = 1.3;
 
         this.textures = [this.test, this.cubemap, this.lava];
 
@@ -87,13 +86,13 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 40, 40), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(40, 20, 40), vec3.fromValues(-10, 0, -10));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        //this.set
+        this.setGlobalAmbientLight(0.1, 0.1, 0.1, 1);
         this.setShininess(10.0);
     }
     checkKeys() {

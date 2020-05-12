@@ -6,7 +6,6 @@
 class MyVehicle extends CGFobject {
 	constructor(scene) {
 		super(scene);
-		//this.initBuffers();
 
 		this.ang = 0;
 		this.vel = 0;
@@ -25,12 +24,6 @@ class MyVehicle extends CGFobject {
 		this.airship = new MyAirshipBody(this.scene);
 	}
 
-	/*
-	initBuffers() {
-		this.initGLBuffers();
-	}
-	*/
-
 	update(t)
 	{
 		if (this.lastUpdate==0) this.lastUpdate = t;
@@ -42,8 +35,8 @@ class MyVehicle extends CGFobject {
 			this.pos[0] = this.center[0] - 5*Math.cos(this.pilotAngle * Math.PI /180);
 			this.pos[2] = this.center[2] + 5*Math.sin(this.pilotAngle * Math.PI / 180);
 			this.ang = this.pilotAngle;
+			this.airship.ang = -30;
 			this.airship.update(t);
-			this.airship.updateRudders();
 		}
 		else{
 			this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
@@ -75,11 +68,9 @@ class MyVehicle extends CGFobject {
 
 	turn(val)
 	{
-		if(this.vel >= 0){
-			this.ang += val;
-			this.ang += val;
-			this.ang %= 360;
-		}
+		this.ang += val;
+		this.ang += val;
+		this.ang %= 360;
 	}
 
 	reset()  

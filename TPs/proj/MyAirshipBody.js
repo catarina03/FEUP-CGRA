@@ -28,7 +28,21 @@ class MyAirshipBody extends CGFobject {
 	}
 
 	updateRudders(){    //TO FIX
-		//if ()
+
+		if (this.scene.gui.isKeyPressed("KeyD")){
+			this.ang = 45;
+		}
+		else {
+			if (this.scene.gui.isKeyPressed("KeyA")){
+				this.ang = -45;
+			}
+			else{
+				this.ang = 0;
+			}
+		}
+
+		/*
+	
 		if (this.ang + 0.1 < Math.PI/4) {
 			if (this.scene.gui.isKeyPressed("KeyD")){
 				this.ang += 0.1;
@@ -49,6 +63,7 @@ class MyAirshipBody extends CGFobject {
 				}
 			}
 		}
+		*/
 		//this.ang = this.ang % 2*Math.PI;
 
 		/*
@@ -124,7 +139,7 @@ class MyAirshipBody extends CGFobject {
 		//Vertical
 		this.scene.pushMatrix();
 		this.scene.translate(0, 0.4, -0.5);
-		this.scene.rotate(this.ang, 0, 1, 0);
+		this.scene.rotate(this.ang * Math.PI/180, 0, 1, 0);
 		this.scene.rotate(-Math.PI/2, 0, 0, 1);
 		this.scene.scale(0.3, 0, 0.3);
 		this.scene.translate(0, 0, -1);
@@ -133,7 +148,7 @@ class MyAirshipBody extends CGFobject {
 
 		this.scene.pushMatrix();
 		this.scene.translate(0, -0.4, -0.5);
-		this.scene.rotate(this.ang, 0, 1, 0);
+		this.scene.rotate(this.ang * Math.PI/180, 0, 1, 0);
 		this.scene.rotate(Math.PI/2, 0, 0, 1);
 		this.scene.scale(0.3, 0, 0.3);
 		this.scene.translate(0, 0, -1);
