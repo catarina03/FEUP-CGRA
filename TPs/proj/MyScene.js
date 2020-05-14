@@ -204,7 +204,20 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        //This sphere does not have defined texture coordinates
+        //Vehicle
+        if(this.displayVehicle){
+            this.vehicle.display();
+            
+            for(var i = 0; i < 5; i++)
+                this.supplies[i].display();
+        }
+        
+        
+        //Terrain
+        if(this.displayTerrain)
+            this.terrain.display();
+
+        //Sphere
         if(this.displaySphere){
             this.material.apply();
             this.incompleteSphere.display();
@@ -233,23 +246,6 @@ class MyScene extends CGFscene {
             else this.cube.disableNormalViz();
         }
         
-        //Vehicle
-        if(this.displayVehicle){
-            this.vehicle.display();
-            
-            for(var i = 0; i < 5; i++)
-                this.supplies[i].display();
-        }
-      
-        
-        //Terrain
-        if(this.displayTerrain){
-            this.pushMatrix();
-            this.material.apply();
-            this.terrain.display();
-            this.popMatrix();
-        }
-
         // ---- END Primitive drawing section
     }
 }

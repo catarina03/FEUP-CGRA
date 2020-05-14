@@ -39,8 +39,8 @@ class MySupply extends CGFobject {
             this.deltaDistance = this.deltaTime * this.speed;
             this.position[1] -= this.deltaDistance;
 
-            if(this.position[1] <= 0.35){
-                this.position[1] == 0.35;
+            if(this.position[1] <= 0){
+                this.position[1] == 0;
                 this.state = SupplyStates.LANDED;
             }
         }
@@ -59,7 +59,10 @@ class MySupply extends CGFobject {
         }
 
         else if(this.state == SupplyStates.LANDED){
+            this.scene.pushMatrix();
+            this.scene.translate(0, 0.05, 0);
             this.displayLanded();
+            this.scene.popMatrix();
         }
     }
 
@@ -105,7 +108,49 @@ class MySupply extends CGFobject {
         this.scene.popMatrix();
     }
 
-    displayLanded(){}
+    displayLanded(){
+                //Back
+                this.scene.pushMatrix();
+                this.scene.translate(0, 0, -0.5)
+                this.scene.rotate(-Math.PI/2, 1, 0, 0);
+                this.face1.display();
+                this.scene.popMatrix();
+        
+                //Right
+                this.scene.pushMatrix();
+                this.scene.translate(1, 0, 0.5);
+                this.scene.rotate(-Math.PI / 2, 1, 0, 0);
+                this.face2.display();
+                this.scene.popMatrix();
+        
+                //Left
+                this.scene.pushMatrix();
+                this.scene.translate(-1, 0, 0.5)
+                this.scene.rotate(- Math.PI / 2, 1, 0, 0);
+                this.face3.display();
+                this.scene.popMatrix();
+        
+                //Front
+                this.scene.pushMatrix();
+                this.scene.translate(0, 0, 1.5);
+                this.scene.rotate(- Math.PI / 2, 1, 0, 0);
+                this.face4.display();
+                this.scene.popMatrix();
+        
+                //Up
+                this.scene.pushMatrix();
+                this.scene.translate(0, 0, 2.5)
+                this.scene.rotate( -Math.PI / 2, 1, 0, 0);
+                this.face5.display();
+                this.scene.popMatrix();
+        
+                //Down
+                this.scene.pushMatrix();
+                this.scene.translate(0, 0, 0.5)
+                this.scene.rotate( -Math.PI / 2, 1, 0, 0);
+                this.face6.display();
+                this.scene.popMatrix();
+    }
 
     drop(dropPosition){
         this.position[0] = dropPosition[0];
