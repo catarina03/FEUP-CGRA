@@ -57,13 +57,11 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this);
 
-        this.supply1 = new MySupply(this);
-        this.supply2 = new MySupply(this);
-        this.supply3 = new MySupply(this);
-        this.supply4 = new MySupply(this);
-        this.supply5 = new MySupply(this);
         this.nSuppliesDelivered = 0;
-        this.supplies = [this.supply1, this.supply2, this.supply3, this.supply4, this.supply5];
+        this.supplies = [];
+        for(var i = 0; i < 5; i++){
+            this.supplies.push(new MySupply(this));
+        }
 
         // GUI
         this.displayAxis = true;
@@ -107,7 +105,6 @@ class MyScene extends CGFscene {
         var text="Keys pressed: ";
         var keysPressed=false;
 
-        // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
@@ -147,14 +144,20 @@ class MyScene extends CGFscene {
             text+=" R ";
             keysPressed=true;
             this.vehicle.reset();
-            //Reset supplies
+
+            for(var i = 0; i < 5; i++)
+                this.supplies[i].reset();
+            
+            this.nSuppliesDelivered = 0;
         }
 
         if (this.gui.isKeyPressed("KeyL")){
             text+=" L ";
             keysPressed=true;
-            //this.supplies[this.nSuppliesDelivered].drop(); //mandar a position
-            this.nSuppliesDelivered++;
+            if(this.nSuppliesDelivered < 5){
+                this.supplies[this.nSuppliesDelivered].drop(this.vehicle.getPosition()); 
+                this.nSuppliesDelivered++;
+            }
         }
 
         if (keysPressed){
@@ -165,13 +168,12 @@ class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
-        this.checkKeys();
-        this.vehicle.update(t);
-        this.supply1.update(t);
-        this.supply2.update(t);
-        this.supply3.update(t);
-        this.supply4.update(t);
-        this.supply5.update(t);
+        if(this.displayVehicle){
+            this.checkKeys();
+            this.vehicle.update(t);
+            for(var i = 0; i < 5; i++)
+                this.supplies[i].update(t);
+        }
     }
 
     updateAppliedTexture() {
@@ -191,6 +193,7 @@ class MyScene extends CGFscene {
 
         //this.lights[0].update() 
         
+        //Zoom
         this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
 
         // Draw axis
@@ -216,7 +219,6 @@ class MyScene extends CGFscene {
                 this.cylinder.enableNormalViz();
             else  this.cylinder.disableNormalViz();
         }
-        
 
         //UnitCube
         if (this.displayCube){
@@ -231,16 +233,18 @@ class MyScene extends CGFscene {
             else this.cube.disableNormalViz();
         }
         
-
         //Vehicle
-        if(this.displayVehicle)
+        if(this.displayVehicle){
             this.vehicle.display();
+            
+            for(var i = 0; i < 5; i++)
+                this.supplies[i].display();
+        }
       
         
         //Terrain
         if(this.displayTerrain){
             this.pushMatrix();
-            this.translate(0,0,0);
             this.material.apply();
             this.terrain.display();
             this.popMatrix();
