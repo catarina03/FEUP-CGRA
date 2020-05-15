@@ -9,7 +9,7 @@ class MyFlag extends CGFobject {
 
         this.plane = new MyPlane(scene);
 
-		//this.flagTex = new CGFtexture(this.scene,'images/flag.jpg');
+		this.flagTex = new CGFtexture(this.scene,'images/penguin.png');
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
         
         this.phase = 0;
@@ -33,8 +33,11 @@ class MyFlag extends CGFobject {
     }
 
     display(){
-		this.scene.pushMatrix();
 
+        this.flagTex.bind(4);
+        this.scene.setActiveShader(this.shader);
+
+		this.scene.pushMatrix();
 
         //Apply texture
 		this.scene.scale(2, 1, 1); //Flag Shape
@@ -42,5 +45,6 @@ class MyFlag extends CGFobject {
 
 		this.scene.popMatrix();
 
+        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }
