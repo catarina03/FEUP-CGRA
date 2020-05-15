@@ -56,6 +56,7 @@ class MyScene extends CGFscene {
         this.cube = new MyCubeMap(this);
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this);
+        this.billboard = new MyBillboard(this);
 
         this.nSuppliesDelivered = 0;
         this.supplies = [];
@@ -166,7 +167,6 @@ class MyScene extends CGFscene {
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...
         if(this.displayVehicle){
             this.checkKeys();
             this.vehicle.update(t);
@@ -211,7 +211,6 @@ class MyScene extends CGFscene {
                 this.supplies[i].display();
         }
         
-        
         //Terrain
         if(this.displayTerrain)
             this.terrain.display();
@@ -244,6 +243,9 @@ class MyScene extends CGFscene {
                 this.cube.enableNormalViz();
             else this.cube.disableNormalViz();
         }
+
+        //Billboard
+        this.billboard.display();
         
         // ---- END Primitive drawing section
     }
