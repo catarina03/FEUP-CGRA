@@ -45,6 +45,9 @@ class MyVehicle extends CGFobject {
 			this.airship.update(t);
 			this.airship.updateRudders();
 		}
+
+		//Flag
+		this.flag.update(t, this.vel);
     }
 
 	startAutoPilot(){
@@ -84,6 +87,7 @@ class MyVehicle extends CGFobject {
 
 	display()
 	{
+		//Vehicle
 		this.scene.pushMatrix();
 
 		this.scene.translate(0, 10, 0);
@@ -95,12 +99,14 @@ class MyVehicle extends CGFobject {
 
 		this.scene.popMatrix();
 
+		//Flag
 		this.scene.pushMatrix();
 
 		this.scene.translate(0, 10, 0);
 		this.scene.translate(this.pos[0]  - 1.8, 0, this.pos[2] - 1.8);
 		this.scene.rotate(this.ang*Math.PI /180 + Math.PI/2, 0, 1, 0); //??
 		this.flag.display();
+
 		this.scene.popMatrix();
 	}
 
