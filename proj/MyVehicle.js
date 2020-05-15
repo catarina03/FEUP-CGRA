@@ -72,7 +72,6 @@ class MyVehicle extends CGFobject {
 	turn(val)
 	{
 		this.ang += val;
-
 		this.ang %= 360;
 	}
 
@@ -91,20 +90,18 @@ class MyVehicle extends CGFobject {
 		this.scene.pushMatrix();
 
 		this.scene.translate(0, 10, 0);
+		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 		this.scene.translate(this.pos[0], 0, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
 		this.scene.scale(2,2,2);
-
 		this.airship.display();
-
 		this.scene.popMatrix();
 
 		//Flag
 		this.scene.pushMatrix();
-
-		this.scene.translate(0, 10, 0);
-		this.scene.translate(this.pos[0]  - 1.8, 0, this.pos[2] - 1.8);
-		this.scene.rotate(this.ang*Math.PI /180 + Math.PI/2, 0, 1, 0); //??
+		this.scene.translate(this.pos[0], 10, this.pos[2]);
+		this.scene.rotate(this.ang*Math.PI /180 + Math.PI/2, 0, 1, 0); 
+		this.scene.translate(5, 0, 0);
 		this.flag.display();
 
 		this.scene.popMatrix();

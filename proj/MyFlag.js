@@ -40,7 +40,7 @@ class MyFlag extends CGFobject {
 		this.scene.pushMatrix();
 
         //Apply texture
-		this.scene.scale(2, 1, 1); //Flag Shape
+		this.scene.scale(3, 1.5, 1.5); //Flag Shape
         this.plane.display();
 
 		this.scene.popMatrix();
