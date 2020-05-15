@@ -28,18 +28,16 @@ class MyVehicle extends CGFobject {
 
 	}
 
-	update(t)
-	{
+	update(t){
 		if (this.lastUpdate==0) this.lastUpdate = t;
         this.delta = (t - this.lastUpdate)/1000.0;
         this.lastUpdate = t;
 
-		if (this.autoPilot){
-			this.pilotAngle += this.delta * 360/5;
-			this.pos[0] = this.center[0] - this.radius*Math.cos(this.pilotAngle * Math.PI /180);
-			this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
-			this.ang = this.pilotAngle;
-			this.airship.ang = -30;
+        if (this.autoPilot){
+			this.pilotAngle = this.ang;
+            this.pos[0] = this.center[0] - this.radius*Math.cos(this.pilotAngle * Math.PI / 180);
+            this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
+			this.turn(this.delta * 360/5);
 			this.airship.update(t);
 		}
 		else{
@@ -48,14 +46,11 @@ class MyVehicle extends CGFobject {
 			this.airship.update(t);
 			this.airship.updateRudders();
 		}
-
-		//this.ang %= 360;
-	}
+    }
 
 	startAutoPilot(){
 		this.autoPilot = true; 
 
-		this.pilotAngle = (this.ang - 90) * Math.PI/180;
 		var directionalAngle = (this.ang + 90) * Math.PI/180;
 
 		let x = this.pos[0] + Math.sin(directionalAngle)*this.radius;
@@ -75,7 +70,7 @@ class MyVehicle extends CGFobject {
 	turn(val)
 	{
 		this.ang += val;
-		this.ang += val;
+
 		this.ang %= 360;
 	}
 
