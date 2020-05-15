@@ -19,12 +19,20 @@ class MySupply extends CGFobject {
 
 		this.previousTime = 0;
 
-        this.face1 = new MyQuad(this.scene);
-        this.face2 = new MyQuad(this.scene);
-        this.face3 = new MyQuad(this.scene);
-        this.face4 = new MyQuad(this.scene);
-        this.face5 = new MyQuad(this.scene);
-        this.face6 = new MyQuad(this.scene);
+        this.face = new MyQuad(this.scene);
+
+        this.box = new CGFappearance(this.scene);
+		this.box.setAmbient(0.5,0.5,0.5,1);
+        this.box.setDiffuse(0.8,0.8,0.8,1);
+        this.box.setSpecular(0.1,0.1,0.1,1);
+        this.box.setShininess(10);
+        this.box.loadTexture('images/box.jpeg');
+        this.box.setTextureWrap('REPEAT','REPEAT');
+        //this.face2 = new MyQuad(this.scene);
+        //this.face3 = new MyQuad(this.scene);
+        //this.face4 = new MyQuad(this.scene);
+        //this.face5 = new MyQuad(this.scene);
+        //this.face6 = new MyQuad(this.scene);
     }
 	
     update(t){
@@ -64,86 +72,98 @@ class MySupply extends CGFobject {
         //Back
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI,0, 1, 0);
-        this.face1.display();
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
 
         //Right
         this.scene.pushMatrix();
         this.scene.rotate( Math.PI / 2, 0, 1, 0);
-        this.scene.translate(-0.5, 0, 0.5)
-        this.face2.display();
+        this.scene.translate(-0.5, 0, 0.5);
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
 
         //Left
         this.scene.pushMatrix();
         this.scene.rotate( -Math.PI / 2, 0, 1, 0);
-        this.scene.translate(0.5, 0, 0.5)
-        this.face3.display();
+        this.scene.translate(0.5, 0, 0.5);
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
 
         //Front
         this.scene.pushMatrix();
         this.scene.translate(0,0,1);
-        this.face4.display();
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
 
         //Up
         this.scene.pushMatrix();
         this.scene.rotate( -Math.PI / 2, 1, 0, 0);
-        this.scene.translate(0, -0.5, 0.5)
-        this.face5.display();
+        this.scene.translate(0, -0.5, 0.5);
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
 
         //Down
         this.scene.pushMatrix();
         this.scene.rotate( Math.PI / 2, 1, 0, 0);
-        this.scene.translate(0, 0.5, 0.5)
-        this.face6.display();
+        this.scene.translate(0, 0.5, 0.5);
+        this.box.apply();
+        this.face.display();
         this.scene.popMatrix();
     }
 
     displayLanded(){
-                //Back
-                this.scene.pushMatrix();
-                this.scene.translate(0, 0, -0.5)
-                this.scene.rotate(-Math.PI/2, 1, 0, 0);
-                this.face1.display();
-                this.scene.popMatrix();
+        //Back
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, -0.5);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
         
-                //Right
-                this.scene.pushMatrix();
-                this.scene.translate(1, 0, 0.5);
-                this.scene.rotate(-Math.PI / 2, 1, 0, 0);
-                this.face2.display();
-                this.scene.popMatrix();
+        //Right
+        this.scene.pushMatrix();
+        this.scene.translate(1, 0, 0.5);
+        this.scene.rotate(-Math.PI / 2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
         
-                //Left
-                this.scene.pushMatrix();
-                this.scene.translate(-1, 0, 0.5)
-                this.scene.rotate(- Math.PI / 2, 1, 0, 0);
-                this.face3.display();
-                this.scene.popMatrix();
+        //Left
+        this.scene.pushMatrix();
+        this.scene.translate(-1, 0, 0.5);
+        this.scene.rotate(- Math.PI / 2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
         
-                //Front
-                this.scene.pushMatrix();
-                this.scene.translate(0, 0, 1.5);
-                this.scene.rotate(- Math.PI / 2, 1, 0, 0);
-                this.face4.display();
-                this.scene.popMatrix();
+        //Front
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 1.5);
+        this.scene.rotate(- Math.PI / 2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
         
-                //Up
-                this.scene.pushMatrix();
-                this.scene.translate(0, 0, 2.5)
-                this.scene.rotate( -Math.PI / 2, 1, 0, 0);
-                this.face5.display();
-                this.scene.popMatrix();
+        //Up
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 2.5);
+        this.scene.rotate( -Math.PI / 2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
         
-                //Down
-                this.scene.pushMatrix();
-                this.scene.translate(0, 0, 0.5)
-                this.scene.rotate( -Math.PI / 2, 1, 0, 0);
-                this.face6.display();
-                this.scene.popMatrix();
+        //Down
+        this.scene.pushMatrix();
+        this.scene.translate(0, 0, 0.5);
+        this.scene.rotate( -Math.PI / 2, 1, 0, 0);
+        this.box.apply();
+        this.face.display();
+        this.scene.popMatrix();
     }
 
     drop(dropPosition){

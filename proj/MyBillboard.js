@@ -22,7 +22,7 @@ class MyBillboard extends CGFobject {
         
         this.whiteMaterial = new CGFappearance(this.scene);
 		this.whiteMaterial.setAmbient(0.5,0.5,0.5,1);
-        this.whiteMaterial.setDiffuse(0.6,0.6,0.6,1);
+        this.whiteMaterial.setDiffuse(0.8,0.6,0.6,1);
         this.whiteMaterial.setSpecular(0.1,0.1,0.1,1);
         this.whiteMaterial.setShininess(10);
         this.whiteMaterial.loadTexture('images/white.png');
