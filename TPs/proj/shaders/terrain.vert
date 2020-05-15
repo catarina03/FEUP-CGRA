@@ -17,7 +17,7 @@ void main() {
     vTextureCoord = aTextureCoord;
 	vec3 offset = vec3(0.0, 0.0, 0.0);
 
-    offset = aVertexNormal * texture2D(terrainMap, vTextureCoord).b * 0.1;
+    offset = aVertexNormal * texture2D(terrainMap, vTextureCoord).b * 8.0;
 
     gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 }
