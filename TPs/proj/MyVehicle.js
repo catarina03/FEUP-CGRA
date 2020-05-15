@@ -27,7 +27,7 @@ class MyVehicle extends CGFobject {
         this.delta = (t - this.lastUpdate)/1000.0;
         this.lastUpdate = t;
 
-		if (this.autoPilot){
+		if (this.autoPilot){  //WEIRD BEHAVIOUR AT TIMES
 			this.pilotAngle += this.delta * 360/5;
 			this.pos[0] = this.center[0] - this.radius*Math.cos(this.pilotAngle * Math.PI /180);
 			this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
