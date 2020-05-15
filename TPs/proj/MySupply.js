@@ -40,30 +40,24 @@ class MySupply extends CGFobject {
             this.position[1] -= this.deltaDistance;
 
             if(this.position[1] <= 0){
-                this.position[1] == 0;
+                this.position[1] = 0.05;
                 this.state = SupplyStates.LANDED;
             }
         }
     }
 
     display(){
+        this.scene.pushMatrix();
+        this.scene.translate(this.position[0], this.position[1], this.position[2]);
 
-        if(this.state == SupplyStates.FALLING){
-            
-            this.scene.pushMatrix();
-            this.scene.translate(this.position[0], this.position[1], this.position[2]);
-
+        if(this.state == SupplyStates.FALLING)
             this.displayFalling();
 
-            this.scene.popMatrix();
-        }
-
-        else if(this.state == SupplyStates.LANDED){
-            this.scene.pushMatrix();
-            this.scene.translate(0, 0.05, 0);
+        else if(this.state == SupplyStates.LANDED)
             this.displayLanded();
-            this.scene.popMatrix();
-        }
+
+        this.scene.popMatrix();
+
     }
 
     displayFalling(){

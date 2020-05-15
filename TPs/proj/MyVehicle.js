@@ -22,6 +22,7 @@ class MyVehicle extends CGFobject {
 		this.delta = 0;
 
 		this.airship = new MyAirshipBody(this.scene);
+		this.flag = new MyPlane(scene);
 	}
 
 	update(t)
@@ -90,6 +91,12 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(this.pos[0], 0, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
 		this.airship.display();
+		this.scene.popMatrix();
+
+		this.scene.pushMatrix();
+		this.scene.translate(this.pos[0], 10, this.pos[2] - 0.5);
+		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+		this.flag.display();
 		this.scene.popMatrix();
 	}
 
