@@ -13,11 +13,8 @@ class MyVehicle extends CGFobject {
 
 		this.center = [0, 0, 0];
 		this.pilotAngle = 0;
-		this.position = 0;
-		this.orientation = 0;
 		this.radius = 5;
 		this.autoPilot = false;
-
 		this.lastUpdate = 0;
 		this.delta = 0;
 
@@ -32,8 +29,8 @@ class MyVehicle extends CGFobject {
 
 		if (this.autoPilot){
 			this.pilotAngle += this.delta * 360/5;
-			this.pos[0] = this.center[0] - 5*Math.cos(this.pilotAngle * Math.PI /180);
-			this.pos[2] = this.center[2] + 5*Math.sin(this.pilotAngle * Math.PI / 180);
+			this.pos[0] = this.center[0] - this.radius*Math.cos(this.pilotAngle * Math.PI /180);
+			this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
 			this.ang = this.pilotAngle;
 			this.airship.ang = -30;
 			this.airship.update(t);
@@ -44,6 +41,8 @@ class MyVehicle extends CGFobject {
 			this.airship.update(t);
 			this.airship.updateRudders();
 		}
+
+		//this.ang %= 360;
 	}
 
 	startAutoPilot(){
