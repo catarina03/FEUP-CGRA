@@ -8,6 +8,7 @@ class MyFlag extends CGFobject {
         super(scene);
 
         this.plane = new MyPlane(scene);
+        this.back = new MyPlane(scene);
 
 		this.flagTex = new CGFtexture(this.scene,'images/penguin.png');
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
@@ -20,7 +21,6 @@ class MyFlag extends CGFobject {
     }
 
     update(t, speed){
-
         if (this.previousTime == 0) this.previousTime = t;
             
         this.deltaTime = (t - this.previousTime)/1000;
@@ -30,6 +30,7 @@ class MyFlag extends CGFobject {
 
         this.phase += this.deltaX;
         this.shader.setUniformsValues({phase: this.phase});
+
     }
 
     display(){
@@ -39,9 +40,10 @@ class MyFlag extends CGFobject {
 
 		this.scene.pushMatrix();
 
-        //Apply texture
 		this.scene.scale(3, 1.5, 1.5); //Flag Shape
         this.plane.display();
+        this.scene.rotate(Math.PI, 0, 1, 0);
+        this.back.display();
 
 		this.scene.popMatrix();
 
