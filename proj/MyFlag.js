@@ -12,12 +12,17 @@ class MyFlag extends CGFobject {
 
 		this.flagTex = new CGFtexture(this.scene,'images/penguin.png');
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
-        
+        this.shaderInv = new CGFshader(this.scene.gl, "shaders/flagInv.vert", "shaders/flag.frag");
+
         this.phase = 0;
+        
         this.shader.setUniformsValues({phase: this.phase});
         this.shader.setUniformsValues({ flagTex: 4 });
+        
+        this.shaderInv.setUniformsValues({phase: this.phase});
+        this.shaderInv.setUniformsValues({ flagTex: 4 });
+        
         this.previousTime = 0;
-
     }
 
     update(t, speed){
@@ -28,8 +33,9 @@ class MyFlag extends CGFobject {
 
         this.deltaX = 5.0* this.deltaTime * (speed + 1.0);
         this.phase += this.deltaX;
-        console.log(this.phase);
+        
         this.shader.setUniformsValues({phase: this.phase});
+        this.shaderInv.setUniformsValues({phase: this.phase});
 
     }
 
@@ -42,6 +48,13 @@ class MyFlag extends CGFobject {
 
 		this.scene.scale(3, 1.5, 1.5); //Flag Shape
         this.plane.display();
+
+        this.scene.popMatrix();
+        
+        this.scene.pushMatrix();
+
+        this.scene.setActiveShader(this.shaderInv);
+        this.scene.scale(3, 1.5, 1.5); //Flag Shape
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.back.display();
 
