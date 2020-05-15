@@ -20,6 +20,12 @@ class MyVehicle extends CGFobject {
 
 		this.airship = new MyAirshipBody(this.scene);
 		this.flag = new MyPlane(scene);
+
+		//this.flagTex = new CGFtexture(this.scene,'images/flag.jpg');
+        this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
+        
+        this.shader.setUniformsValues({ flagTex: 4 });
+
 	}
 
 	update(t)
@@ -93,8 +99,10 @@ class MyVehicle extends CGFobject {
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.scene.translate(this.pos[0], 10, this.pos[2] - 0.5);
-		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
+		this.scene.translate(0, 10, 0);
+		this.scene.scale(3, 3, 3);
+		this.scene.translate(this.pos[0], 0, this.pos[2] - 1.8);
+		this.scene.rotate(this.ang*Math.PI /180 + Math.PI/2, 0, 1, 0); //??
 		this.flag.display();
 		this.scene.popMatrix();
 	}
