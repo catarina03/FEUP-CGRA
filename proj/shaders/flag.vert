@@ -8,13 +8,13 @@ uniform mat4 uNMatrix;
 
 varying vec2 vTextureCoord;
 
-attribute float phase;
+uniform float phase;
 
 void main() {
 	vTextureCoord = aTextureCoord;
 
 	vec3 offset = aVertexNormal;
-	offset.z *= sin(aVertexPosition.x * 6.3 + phase);
+	offset.z *= sin(aVertexPosition.x * 30.0 + phase) * 0.1;
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 

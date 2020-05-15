@@ -7,8 +7,8 @@ class MyFlag extends CGFobject {
 	constructor(scene) {
         super(scene);
 
-        this.plane = new MyPlane(scene);
-        this.back = new MyPlane(scene);
+        this.plane = new MyPlane(scene, 64);
+        this.back = new MyPlane(scene, 64 );
 
 		this.flagTex = new CGFtexture(this.scene,'images/penguin.png');
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
@@ -26,9 +26,9 @@ class MyFlag extends CGFobject {
         this.deltaTime = (t - this.previousTime)/1000;
         this.previousTime = t;  
 
-        this.deltaX = this.deltaTime * speed;
-
+        this.deltaX = 5.0* this.deltaTime * (speed + 1.0);
         this.phase += this.deltaX;
+        console.log(this.phase);
         this.shader.setUniformsValues({phase: this.phase});
 
     }
