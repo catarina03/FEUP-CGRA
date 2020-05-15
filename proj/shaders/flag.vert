@@ -11,10 +11,11 @@ varying vec2 vTextureCoord;
 uniform float phase;
 
 void main() {
-	vec3 offset = vec3(0.0, 0.0, 0.0);
-	offset.z = sin(aVertexPosition.x * 2.0 + phase);
+    vTextureCoord = aTextureCoord;
 
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+    vec3 offset = aVertexNormal;
+    offset.z *= sin(aVertexPosition.x * 6.3 + phase);
 
-	vTextureCoord = aTextureCoord;
+    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
+
 }

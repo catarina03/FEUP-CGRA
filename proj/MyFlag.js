@@ -22,7 +22,6 @@ class MyFlag extends CGFobject {
     update(t, speed){
 
         if (this.previousTime == 0) this.previousTime = t;
-            
         this.deltaTime = (t - this.previousTime)/1000;
         this.previousTime = t;  
 
