@@ -28,11 +28,6 @@ class MySupply extends CGFobject {
         this.box.setShininess(10);
         this.box.loadTexture('images/box.jpeg');
         this.box.setTextureWrap('REPEAT','REPEAT');
-        //this.face2 = new MyQuad(this.scene);
-        //this.face3 = new MyQuad(this.scene);
-        //this.face4 = new MyQuad(this.scene);
-        //this.face5 = new MyQuad(this.scene);
-        //this.face6 = new MyQuad(this.scene);
     }
 	
     update(t){

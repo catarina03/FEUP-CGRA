@@ -88,6 +88,16 @@ class MyBillboard extends CGFobject {
         this.whiteMaterial.apply();
         this.plane.display();
         this.scene.popMatrix();
+
+        //Progress bar
+        //this.scene.setActiveShader(this.progressBar);
+        this.scene.pushMatrix();
+        this.scene.translate(18.5, 7.625, 8);
+        this.scene.rotate(Math.PI/4, 0, 1, 0);
+        this.scene.scale(1.5, 0.2, 1);
+        this.plane.display();
+        this.scene.popMatrix();
+        //this.scene.setActiveShader(this.defaultShader);
     }
 	
 }
