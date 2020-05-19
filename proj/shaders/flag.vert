@@ -17,6 +17,6 @@ void main() {
 	vec3 offset = aVertexNormal;
 	offset.z *= sin(aVertexPosition.x * 20.0 + phase) * 0.1;
 
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0)
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 
 }
