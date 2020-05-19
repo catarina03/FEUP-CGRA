@@ -149,6 +149,7 @@ class MyScene extends CGFscene {
                 this.supplies[i].reset();
             
             this.nSuppliesDelivered = 0;
+            this.billboard.update(this.nSuppliesDelivered);
         }
 
         if (this.gui.isKeyPressed("KeyL")){
@@ -157,6 +158,7 @@ class MyScene extends CGFscene {
             if(this.nSuppliesDelivered < 5){
                 this.supplies[this.nSuppliesDelivered].drop(this.vehicle.getPosition()); 
                 this.nSuppliesDelivered++;
+                this.billboard.update(this.nSuppliesDelivered);
             }
         }
 
@@ -212,8 +214,11 @@ class MyScene extends CGFscene {
         }
         
         //Terrain
-        if(this.displayTerrain)
+        if(this.displayTerrain){
+             //Billboard
+            this.billboard.display();
             this.terrain.display();
+        }
 
         //Sphere
         if(this.displaySphere){
@@ -244,8 +249,7 @@ class MyScene extends CGFscene {
             else this.cube.disableNormalViz();
         }
 
-        //Billboard
-        this.billboard.display();
+       
         
         // ---- END Primitive drawing section
     }

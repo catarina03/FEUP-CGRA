@@ -8,6 +8,10 @@ class MyBillboard extends CGFobject {
         super(scene);
         this.plane = new MyPlane(this.scene);
         
+        this.shader = new CGFshader(this.scene.gl, "shaders/progressBar.vert", "shaders/progressBar.frag");
+        this.cutoff = 0.0;
+        this.shader.setUniformsValues({cutoff: this.cutoff});
+
         this.initMaterials();
     }
 
@@ -41,63 +45,83 @@ class MyBillboard extends CGFobject {
 
         //Joists
         this.scene.pushMatrix();
+
         this.scene.translate(17.9, 6.75, 8.6);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, 1, 1);
         this.greyMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+
         this.scene.translate(17.9, 6.75, 8.6);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, -1, 1);
         this.greyMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+
         this.scene.translate(19.1, 6.75, 7.4);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, 1, 1);
         this.greyMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+
         this.scene.translate(19.1, 6.75, 7.4);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, -1, 1);
         this.greyMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         //Bases
         this.scene.pushMatrix();
+
         this.scene.translate(18.5, 7.75, 8);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(2, 1, 1);
         this.billboardMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+
         this.scene.translate(18.5, 7.75, 8);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(2, -1, 1);
         this.whiteMaterial.apply();
         this.plane.display();
+
         this.scene.popMatrix();
 
         //Progress bar
-        //this.scene.setActiveShader(this.progressBar);
+        this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
-        this.scene.translate(18.5, 7.625, 8);
+
+        this.scene.translate(18.5, 7.626, 8);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(1.5, 0.2, 1);
         this.plane.display();
+
         this.scene.popMatrix();
-        //this.scene.setActiveShader(this.defaultShader);
+        
+        this.scene.setActiveShader(this.scene.defaultShader);
+    }
+
+    update(suppliesDelivered){
+        this.cutoff = suppliesDelivered / 5.0;
+        this.shader.setUniformsValues({cutoff: this.cutoff});
     }
 	
 }
