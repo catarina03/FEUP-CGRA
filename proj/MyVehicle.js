@@ -18,13 +18,13 @@ class MyVehicle extends CGFobject {
 		this.lastUpdate = 0;
 		this.delta = 0;
 
-		this.airship = new MyAirshipBody(this.scene);
+		this.airship = new MyAirshipBody(scene);
 		this.flag = new MyFlag(scene);
+		this.ropeUp = new Rope(scene);
+		this.ropeDown = new Rope(scene);
 
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
-        
-        this.shader.setUniformsValues({ flagTex: 4 });
-
+		this.shader.setUniformsValues({ flagTex: 4 });
 	}
 
 	update(t){
@@ -104,6 +104,15 @@ class MyVehicle extends CGFobject {
 		this.scene.translate(5, 0, 0);
 		this.flag.display();
 
+		this.scene.popMatrix();
+
+		//Ropes
+		this.scene.pushMatrix();
+		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.rotate(this.ang*Math.PI /180 , 0, 1, 0); 
+		this.ropeUp.display();
+		this.scene.translate(0, -0.9, 0);
+		this.ropeDown.display();
 		this.scene.popMatrix();
 	}
 
