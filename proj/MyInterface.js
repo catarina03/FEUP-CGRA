@@ -18,20 +18,36 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'displayNormals').name("Display normals");
-        this.gui.add(this.scene, 'displaySphere').name("Display sphere");
-        this.gui.add(this.scene, 'displayCylinder').name("Display cylinder");
-        this.gui.add(this.scene, 'displayCube').name("Display cube");
-        this.gui.add(this.scene, 'displayVehicle').name("Display vehicle");
-        this.gui.add(this.scene, 'displayTerrain').name("Display terrain");
         
         //Slider element in GUI
-        this.gui.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
         this.gui.add(this.scene, 'scaleFactor', 0.5, 10).name('Scale Factor');
 
-        //Dropdown for textures
-        this.gui.add(this.scene, 'selectedTexture', this.scene.texturesIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
+        //Sphere
+        var sphere = this.gui.addFolder('Sphere')
+        sphere.add(this.scene, 'displaySphere').name("Display sphere");
+
+        //Cylinder
+        var cylinder = this.gui.addFolder('Cylinder')
+        cylinder.add(this.scene, 'displayCylinder').name("Display cylinder");
+        cylinder.add(this.scene, 'displayNormalsCube').name("Display normals");
+
+        //Cubemap
+        var cubemap = this.gui.addFolder('CubeMap');
+        cubemap.add(this.scene, 'selectedTexture', this.scene.texturesIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
+        cubemap.add(this.scene, 'displayCube').name("Display cube map");
+        cubemap.add(this.scene, 'displayNormalsCube').name("Display normals");
         
+        //Vehicle
+        var vehicle = this.gui.addFolder('Vehicle');
+        vehicle.add(this.scene, 'displayVehicle').name("Display vehicle");
+        vehicle.add(this.scene, 'displaySupplies').name("Display Supplies");
+        vehicle.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
+
+        //Terrain
+        var terrain = this.gui.addFolder('Terrain');
+        terrain.add(this.scene, 'displayTerrain').name("Display terrain");
+        terrain.add(this.scene, 'displayBillboard').name("Display Billboard");
+
         this.initKeys();
 
         return true;

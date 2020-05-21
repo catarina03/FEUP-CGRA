@@ -66,21 +66,24 @@ class MyScene extends CGFscene {
 
         // GUI
         this.displayAxis = true;
-        this.displayNormals = false;
+        this.displayNormalsCube = false;
+        this.displayNormalsCylinder = false;
         this.displaySphere = false;
         this.displayCylinder = false;
         this.displayVehicle =true;
         this.displayCube = true;
         this.displayTerrain = true;
+        this.displayBillboard = true;
+        this.displaySupplies = true;
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1.3;
 
-        this.textures = [this.test, this.cubemap, this.lava];
+        this.textures = [this.cubemap, this.test, this.lava];
 
         this.texturesIds = {
-            'Test': 0,
-            'CubeMap': 1,
+            'CubeMap': 0,
+            'Test': 1,
             'Lava': 2
         };
 
@@ -208,15 +211,16 @@ class MyScene extends CGFscene {
         //Vehicle
         if(this.displayVehicle){
             this.vehicle.display();
-            
-            for(var i = 0; i < 5; i++)
-                this.supplies[i].display();
+            if(this.displaySupplies)
+                for(var i = 0; i < 5; i++)
+                    this.supplies[i].display();
         }
         
         //Terrain
         if(this.displayTerrain){
-             //Billboard
-            this.billboard.display();
+            //Billboard
+            if(this.displayBillboard)
+                this.billboard.display();
             this.terrain.display();
         }
 
@@ -231,7 +235,7 @@ class MyScene extends CGFscene {
             this.material.apply();
             this.cylinder.display();
 
-            if (this.displayNormals)
+            if (this.displayNormalsCylinder)
                 this.cylinder.enableNormalViz();
             else  this.cylinder.disableNormalViz();
         }
@@ -244,7 +248,7 @@ class MyScene extends CGFscene {
             this.cube.display();
             this.popMatrix();
 
-            if (this.displayNormals)
+            if (this.displayNormalsCube)
                 this.cube.enableNormalViz();
             else this.cube.disableNormalViz();
         }
