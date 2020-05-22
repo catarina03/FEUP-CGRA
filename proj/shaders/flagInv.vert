@@ -14,7 +14,7 @@ void main() {
 	vTextureCoord = aTextureCoord;
 
 	vec3 offset = aVertexNormal;
-	offset.z *= sin(aVertexPosition.x * 10.0 + phase) * 0.1;
+	offset.z *= sin(aVertexPosition.x * 10.0 + phase) * 0.1 * (0.0 - aVertexPosition.x + 0.5);
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 

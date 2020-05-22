@@ -38,7 +38,7 @@ class MyFlag extends CGFobject {
         this.deltaTime = (t - this.previousTime)/1000;
         this.previousTime = t;  
 
-        this.deltaX = 5.0* this.deltaTime * (speed * 10 + 1.0);
+        this.deltaX = 5.0* this.deltaTime * (speed * 10 + 2.0);
         this.phase += this.deltaX/2;
         
         this.shader.setUniformsValues({phase: this.phase});
