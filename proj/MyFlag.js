@@ -30,8 +30,8 @@ class MyFlag extends CGFobject {
         this.deltaTime = (t - this.previousTime)/1000;
         this.previousTime = t;  
 
-        this.deltaX = 5.0* this.deltaTime * (speed + 1.0);
-        this.phase += this.deltaX;
+        this.deltaX = 5.0* this.deltaTime * (speed * 10 + 1.0);
+        this.phase += this.deltaX/2;
         
         this.shader.setUniformsValues({phase: this.phase});
         this.shaderInv.setUniformsValues({phase: this.phase});
@@ -44,19 +44,15 @@ class MyFlag extends CGFobject {
         this.scene.setActiveShader(this.shader);
 
 		this.scene.pushMatrix();
-
 		this.scene.scale(2, 1, 1); //Flag Shape
         this.plane.display();
-
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
-
         this.scene.setActiveShader(this.shaderInv);
         this.scene.scale(2, 1, 1); //Flag Shape
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.back.display();
-
 		this.scene.popMatrix();
 
         this.scene.setActiveShader(this.scene.defaultShader);
