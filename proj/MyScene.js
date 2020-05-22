@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
         //Textures
         this.earth = new CGFtexture(this, 'images/earth.jpg');
         this.test = new CGFtexture(this, 'images/test.png');
-        this.cubemap = new CGFtexture(this, 'images/sky2.png');
+        this.cubemap = new CGFtexture(this, 'images/cubemap.png');
         this.lava = new CGFtexture(this, 'images/lava.png');
         this.night = new CGFtexture(this, 'images/night.png');
 
@@ -170,7 +170,7 @@ class MyScene extends CGFscene {
 
         if (keysPressed){
             console.log(text);
-        }		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+        }	
     }
 
     // called periodically (as per setUpdatePeriod() in init())
@@ -196,12 +196,7 @@ class MyScene extends CGFscene {
         this.updateProjectionMatrix();
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
-        this.applyViewMatrix();
-
-        //this.lights[0].update() 
-        
-        //Zoom
-        //this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+        this.applyViewMatrix();        
 
         // Draw axis
         if (this.displayAxis)
