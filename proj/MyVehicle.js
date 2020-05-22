@@ -61,6 +61,10 @@ class MyVehicle extends CGFobject {
 		this.center = [x, 0, z];
 	}
 
+	stopAutoPilot(){
+		this.autoPilot = false; 
+	}
+
 	accelerate(val)
 	{
 		this.vel += val;

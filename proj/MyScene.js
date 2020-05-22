@@ -142,6 +142,8 @@ class MyScene extends CGFscene {
             keysPressed=true;
             if (!this.vehicle.autoPilot)
                 this.vehicle.startAutoPilot();
+            else
+                this.vehicle.stopAutoPilot();
         }
 
         if (this.gui.isKeyPressed("KeyR")){
