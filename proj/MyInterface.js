@@ -40,6 +40,7 @@ class MyInterface extends CGFinterface {
         vehicle.add(this.scene, 'displaySupplies').name("Display Supplies");
         vehicle.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
         vehicle.add(this.scene, 'scaleFactor', 0.5, 20).name('Scale Factor');
+        vehicle.add(this.scene.vehicle.flag, 'selectedFlagTexture', this.scene.vehicle.flag.texturesFlagIds).name('Selected Texture');
 
         //Terrain
         var terrain = this.gui.addFolder('Terrain');

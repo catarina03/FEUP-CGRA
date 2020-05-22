@@ -10,7 +10,15 @@ class MyFlag extends CGFobject {
         this.plane = new MyPlane(scene, 64);
         this.back = new MyPlane(scene, 64 );
 
-		this.flagTex = new CGFtexture(this.scene,'images/penguin.png');
+        this.penguin = new CGFtexture(this.scene,'images/penguin.png');
+        this.feup = new CGFtexture(this.scene,'images/feup_logo.jpg');
+        this.selectedFlagTexture = 0;
+        this.flagTextures = [this.penguin, this.feup]; 
+        this.texturesFlagIds = {
+            'Penguin': 0,
+            'FEUP': 1
+        }
+
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
         this.shaderInv = new CGFshader(this.scene.gl, "shaders/flagInv.vert", "shaders/flag.frag");
 
@@ -40,7 +48,7 @@ class MyFlag extends CGFobject {
 
     display(){
 
-        this.flagTex.bind(4);
+        this.flagTextures[this.selectedFlagTexture].bind(4);
         this.scene.setActiveShader(this.shader);
 
 		this.scene.pushMatrix();
@@ -57,4 +65,5 @@ class MyFlag extends CGFobject {
 
         this.scene.setActiveShader(this.scene.defaultShader);
     }
+
 }
