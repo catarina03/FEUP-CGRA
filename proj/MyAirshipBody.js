@@ -19,7 +19,8 @@ class MyAirshipBody extends CGFobject {
 	}
 
 	update(t){
-		this.engine.ang = t * (this.velocity + 0.1);
+		this.engine.ang = t * (this.velocity + 0.3);
+		console.log(this.velocity );
 	}
 
 	updateRudders(){ 
@@ -135,6 +136,10 @@ class MyAirshipBody extends CGFobject {
 		this.scene.scale(0.08, 0.08, 0.08);
 		this.engine.display();
 		this.scene.popMatrix();
+	}
+
+	setVel(vel){
+		this.velocity = vel;
 	}
 }
 

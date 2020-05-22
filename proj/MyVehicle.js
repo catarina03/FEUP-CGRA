@@ -17,6 +17,7 @@ class MyVehicle extends CGFobject {
 		this.autoPilot = false;
 		this.lastUpdate = 0;
 		this.delta = 0;
+		this.pilotVel = Math.PI * 10.0 / 5.0 * 0.03;
 
 		this.airship = new MyAirshipBody(scene);
 		this.flag = new MyFlag(scene);
@@ -37,14 +38,14 @@ class MyVehicle extends CGFobject {
             this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
 			this.turn(this.delta * 360/5);
 			this.airship.ang = -30;
-			this.airship.update(t);
 		}
 		else{
 			this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
 			this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
-			this.airship.update(t);
 			this.airship.updateRudders();
 		}
+
+		this.airship.update(t);
 
 		//Flag
 		this.flag.update(t, this.vel);
@@ -59,10 +60,14 @@ class MyVehicle extends CGFobject {
 		let z = this.pos[2] + Math.cos(directionalAngle)*this.radius; 
 		
 		this.center = [x, 0, z];
+
+		this.airship.setVel(this.pilotVel);
 	}
 
 	stopAutoPilot(){
 		this.autoPilot = false; 
+
+		this.airship.setVel(this.vel);
 	}
 
 	accelerate(val)
