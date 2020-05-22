@@ -18,9 +18,6 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        
-        //Slider element in GUI
-        this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
 
         //Sphere
         var sphere = this.gui.addFolder('Sphere')
@@ -42,6 +39,7 @@ class MyInterface extends CGFinterface {
         vehicle.add(this.scene, 'displayVehicle').name("Display vehicle");
         vehicle.add(this.scene, 'displaySupplies').name("Display Supplies");
         vehicle.add(this.scene, 'speedFactor', 0.1, 3).name('Speed Factor');
+        vehicle.add(this.scene, 'scaleFactor', 0.5, 20).name('Scale Factor');
 
         //Terrain
         var terrain = this.gui.addFolder('Terrain');
