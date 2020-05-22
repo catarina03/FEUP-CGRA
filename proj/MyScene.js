@@ -163,6 +163,7 @@ class MyScene extends CGFscene {
             keysPressed=true;
             if(this.nSuppliesDelivered < 5){
                 this.supplies[this.nSuppliesDelivered].drop(this.vehicle.getPosition()); 
+                this.supplies[this.nSuppliesDelivered].counter = this.nSuppliesDelivered;
                 this.nSuppliesDelivered++;
                 this.billboard.update(this.nSuppliesDelivered);
             }
