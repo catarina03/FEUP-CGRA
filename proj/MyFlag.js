@@ -45,7 +45,7 @@ class MyFlag extends CGFobject {
 
 		this.scene.pushMatrix();
 
-		this.scene.scale(3, 1.5, 1.5); //Flag Shape
+		this.scene.scale(2, 1, 1); //Flag Shape
         this.plane.display();
 
         this.scene.popMatrix();
@@ -53,7 +53,7 @@ class MyFlag extends CGFobject {
         this.scene.pushMatrix();
 
         this.scene.setActiveShader(this.shaderInv);
-        this.scene.scale(3, 1.5, 1.5); //Flag Shape
+        this.scene.scale(2, 1, 1); //Flag Shape
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.back.display();
 

@@ -107,39 +107,39 @@ class MyCubeMap extends CGFobject {
 
         //Bottom
         this.texCoords.push(0.49, 0.99);
-        this.texCoords.push(0.49, 0.66);
-        this.texCoords.push(0.26, 0.66);
+        this.texCoords.push(0.49, 0.664);
+        this.texCoords.push(0.26, 0.664);
         this.texCoords.push(0.26, 0.99);
 
         //Top
-        this.texCoords.push(0.49, 0.01);
-        this.texCoords.push(0.49, 0.34);
-        this.texCoords.push(0.26, 0.34);
-        this.texCoords.push(0.26, 0.01);
+        this.texCoords.push(0.499, 0.002);
+        this.texCoords.push(0.499, 0.332);
+        this.texCoords.push(0.251, 0.332);
+        this.texCoords.push(0.251, 0.002);
         
         //Right
-        this.texCoords.push(3/4, 0.66);
-        this.texCoords.push(1/2, 0.66);
-        this.texCoords.push(1/2, 0.34);
-        this.texCoords.push(3/4, 0.34);
+        this.texCoords.push(0.75, 0.664);
+        this.texCoords.push(0.5, 0.664);
+        this.texCoords.push(0.5, 0.335);
+        this.texCoords.push(0.75, 0.335);
 
         //Left
-        this.texCoords.push(1/4, 0.66);
-        this.texCoords.push(0.01, 0.66);
-        this.texCoords.push(0.01, 0.34);
-        this.texCoords.push(1/4, 0.34);
+        this.texCoords.push(0.25, 0.664);
+        this.texCoords.push(0.00, 0.664);
+        this.texCoords.push(0.00, 0.335);
+        this.texCoords.push(0.25, 0.335);
 
         //Back
-        this.texCoords.push(0.99, 0.66);
-        this.texCoords.push(3/4, 0.66);
-        this.texCoords.push(3/4, 0.34);
-        this.texCoords.push(0.99, 0.34);
+        this.texCoords.push(1.00, 0.664);
+        this.texCoords.push(0.75, 0.664);
+        this.texCoords.push(0.75, 0.335);
+        this.texCoords.push(1.00, 0.335);
 
         //Front
-        this.texCoords.push(0.49, 0.66);
-        this.texCoords.push(0.26, 0.66);
-        this.texCoords.push(0.26, 0.34);
-        this.texCoords.push(0.49, 0.34);
+        this.texCoords.push(0.50, 0.664);
+        this.texCoords.push(0.25, 0.664);
+        this.texCoords.push(0.25, 0.335);
+        this.texCoords.push(0.50, 0.335);
         
 
 		//The defined indices (and corresponding vertices)

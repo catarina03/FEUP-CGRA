@@ -24,11 +24,11 @@ class MyAirshipBody extends CGFobject {
 
 	updateRudders(){ 
 		if (this.scene.gui.isKeyPressed("KeyD")){
-			this.ang = 45;
+			this.ang = 30;
 		}
 		else {
 			if (this.scene.gui.isKeyPressed("KeyA")){
-				this.ang = -45;
+				this.ang = -30;
 			}
 			else{
 				this.ang = 0;

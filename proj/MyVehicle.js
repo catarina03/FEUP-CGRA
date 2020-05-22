@@ -20,8 +20,7 @@ class MyVehicle extends CGFobject {
 
 		this.airship = new MyAirshipBody(scene);
 		this.flag = new MyFlag(scene);
-		this.ropeUp = new Rope(scene);
-		this.ropeDown = new Rope(scene);
+		this.rope = new MyRope(scene);
 
         this.shader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
 		this.shader.setUniformsValues({ flagTex: 4 });
@@ -37,6 +36,7 @@ class MyVehicle extends CGFobject {
             this.pos[0] = this.center[0] - this.radius*Math.cos(this.pilotAngle * Math.PI / 180);
             this.pos[2] = this.center[2] + this.radius*Math.sin(this.pilotAngle * Math.PI / 180);
 			this.turn(this.delta * 360/5);
+			this.airship.ang = -30;
 			this.airship.update(t);
 		}
 		else{
@@ -88,12 +88,10 @@ class MyVehicle extends CGFobject {
 	{
 		//Vehicle
 		this.scene.pushMatrix();
-
-		this.scene.translate(0, 10, 0);
-		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.translate(this.pos[0], 10, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180, 0, 1, 0);
-		this.scene.scale(2,2,2);
+		//this.scene.scale(2,2,2);
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
 		this.airship.display();
 		this.scene.popMatrix();
 
@@ -101,18 +99,18 @@ class MyVehicle extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(this.pos[0], 10, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180 + Math.PI/2, 0, 1, 0); 
-		this.scene.translate(5, 0, 0);
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+		this.scene.translate(2.75, 0, 0);
 		this.flag.display();
-
 		this.scene.popMatrix();
 
 		//Ropes
 		this.scene.pushMatrix();
-		this.scene.translate(this.pos[0], 0, this.pos[2]);
+		this.scene.translate(this.pos[0], 10, this.pos[2]);
 		this.scene.rotate(this.ang*Math.PI /180 , 0, 1, 0); 
-		this.ropeUp.display();
-		this.scene.translate(0, -0.9, 0);
-		this.ropeDown.display();
+		this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
+		this.scene.translate(0, 0, -1);
+		this.rope.display();
 		this.scene.popMatrix();
 	}
 

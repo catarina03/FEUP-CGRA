@@ -1,9 +1,9 @@
 /**
- * Rope
+ * MyRope
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class Rope extends CGFobject {
+class MyRope extends CGFobject {
 	constructor(scene) {
         super(scene);
         this.cylinder = new MyCylinder(scene, 16);
@@ -19,14 +19,23 @@ class Rope extends CGFobject {
     }
     display(){
         this.scene.pushMatrix();
-        
-        this.scene.translate(0, 10.4, -1.8);
-        this.scene.rotate(-Math.PI / 2 , 1, 0, 0);
-        this.scene.scale(0.02, 1.8, 0.02);
+        this.scene.rotate(Math.PI / 6 , 1, 0, 0);
+        this.scene.scale(0.02, 0.02, 1.8);
+        this.scene.rotate(Math.PI / 2 , 1, 0, 0);
+        this.scene.translate(0, -0.5, 0);
         this.ropeMaterial.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.cylinder.display();
+        this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.scene.rotate(-Math.PI / 6 , 1, 0, 0);
+        this.scene.scale(0.02, 0.02, 1.8);
+        this.scene.rotate(Math.PI / 2 , 1, 0, 0);
+        this.scene.translate(0, -0.5, 0);
+        this.ropeMaterial.apply();
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+        this.cylinder.display();
         this.scene.popMatrix();
     }
 }

@@ -26,8 +26,9 @@ class MyScene extends CGFscene {
         //Textures
         this.earth = new CGFtexture(this, 'images/earth.jpg');
         this.test = new CGFtexture(this, 'images/test.png');
-        this.cubemap = new CGFtexture(this, 'images/cubemap.png');
+        this.cubemap = new CGFtexture(this, 'images/sky2.png');
         this.lava = new CGFtexture(this, 'images/lava.png');
+        this.night = new CGFtexture(this, 'images/night.png');
 
 
         //Material
@@ -45,9 +46,8 @@ class MyScene extends CGFscene {
         this.cubeMaterial.setSpecular(0, 0, 0, 1);
         this.cubeMaterial.setShininess(10.0);
         this.cubeMaterial.setEmission(0.7, 0.7, 0.7, 1);
-        this.cubeMaterial.setTexture(this.cubemap); //default
-        this.cubeMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
+        this.cubeMaterial.setTexture(this.night); //default
+        this.cubeMaterial.setTextureWrap('CLAMP_TO_EDGE', 'CLAMP_TO_EDGE');
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
@@ -77,14 +77,15 @@ class MyScene extends CGFscene {
         this.displaySupplies = true;
         this.selectedTexture = 0;
         this.speedFactor = 1;
-        this.scaleFactor = 1.3;
+        this.scaleFactor = 1;
 
-        this.textures = [this.cubemap, this.test, this.lava];
+        this.textures = [this.night, this.cubemap, this.test, this.lava];
 
         this.texturesIds = {
-            'CubeMap': 0,
-            'Test': 1,
-            'Lava': 2
+            'Night': 0,
+            'CubeMap': 1,
+            'Test': 2,
+            'Lava': 3
         };
 
     }
@@ -95,7 +96,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.8, 0.1, 300, vec3.fromValues(30, 20, 30), vec3.fromValues(0, 10, 0));
+        this.camera = new CGFcamera(0.8, 0.1, 300, vec3.fromValues(27, 15, 15), vec3.fromValues(0, 7, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -167,7 +168,7 @@ class MyScene extends CGFscene {
 
         if (keysPressed){
             console.log(text);
-        }
+        }		//this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
     }
 
     // called periodically (as per setUpdatePeriod() in init())
@@ -198,7 +199,7 @@ class MyScene extends CGFscene {
         //this.lights[0].update() 
         
         //Zoom
-        this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+        //this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
 
         // Draw axis
         if (this.displayAxis)
@@ -220,7 +221,7 @@ class MyScene extends CGFscene {
         if(this.displayTerrain){
             //Billboard
             if(this.displayBillboard)
-                this.billboard.display();
+                this.billboard.display();            
             this.terrain.display();
         }
 

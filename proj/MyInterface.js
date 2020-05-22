@@ -20,7 +20,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         
         //Slider element in GUI
-        this.gui.add(this.scene, 'scaleFactor', 0.5, 10).name('Scale Factor');
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3).name('Scale Factor');
 
         //Sphere
         var sphere = this.gui.addFolder('Sphere')

@@ -42,81 +42,65 @@ class MyBillboard extends CGFobject {
 	}
     
     display(){
-
         //Joists
         this.scene.pushMatrix();
-
-        this.scene.translate(17.9, 6.75, 8.6);
+        this.scene.translate(12.9, 3.75, 3.6);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, 1, 1);
         this.greyMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-
-        this.scene.translate(17.9, 6.75, 8.6);
+        this.scene.translate(12.9, 3.75, 3.6);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, -1, 1);
         this.greyMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-
-        this.scene.translate(19.1, 6.75, 7.4);
+        this.scene.translate(14.1, 3.75, 2.4);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, 1, 1);
         this.greyMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-
-        this.scene.translate(19.1, 6.75, 7.4);
+        this.scene.translate(14.1, 3.75, 2.4);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(0.1, -1, 1);
         this.greyMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         //Bases
         this.scene.pushMatrix();
-
-        this.scene.translate(18.5, 7.75, 8);
+        this.scene.translate(13.5, 4.75, 3);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(2, 1, 1);
         this.billboardMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-
-        this.scene.translate(18.5, 7.75, 8);
+        this.scene.translate(13.5, 4.75, 3);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(2, -1, 1);
         this.whiteMaterial.apply();
         this.plane.display();
-
         this.scene.popMatrix();
 
         //Progress bar
         this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
-
-        this.scene.translate(18.5, 7.626, 8);
+        this.scene.translate(13.51, 4.626, 3.01);
         this.scene.rotate(Math.PI/4, 0, 1, 0);
         this.scene.scale(1.5, 0.2, 1);
         this.plane.display();
-
         this.scene.popMatrix();
-        
-        this.scene.setActiveShader(this.scene.defaultShader);
+        this.scene.setActiveShader(this.scene.defaultShader);    
     }
 
     update(suppliesDelivered){
