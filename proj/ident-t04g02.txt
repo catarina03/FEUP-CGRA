@@ -1,0 +1,19 @@
+Turma 4 - Grupo 2
+
+Elementos:
+- Ana Inês Barros 201806593
+- Catarina Fernandes 201806610
+
+Observações:
+. Existem 2 texturas para a MyFlag
+. Adicionamos cordas entre o MyVehicle e a MyFlag
+. A ondulação da MyFlag não é igual por toda a bandeira. Isto porque, achámos que ficasse mais realista, devido à adição das cordas, se a diferença entre a amplitude máxima e mínima da
+ondulação aumentasse ao longo das coordenadas x em vez de ser constante.
+. Quando o MySupply passa para o estado Landed, aparece uma esfera (brigadeiro) em cima do supply.
+. Os tipos de brigadeiros que aparecem são aleatórios.
+. Adicionámos secções na interface para facilitar a organização e o entendimentos dos controlos.
+. Existem várias textura para o CubeMap.
+. Adicionamos a possibilidade de dar zoom (aplicar um scale) à cena toda.
+. Organizamos os displays de maneira a não ser possível:
+	- Mostrar o MyBillboard sem que o terreno esteja visivel;
+	- Mostrar os MySupplies e a MyFlag sem que o MyVehicle esteja vísivel;
