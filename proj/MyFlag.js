@@ -6,11 +6,11 @@
 class MyFlag extends CGFobject {
 	constructor(scene) {
         super(scene);
-
         this.plane = new MyPlane(scene, 64);
 
         this.penguin = new CGFtexture(this.scene,'images/penguin.png');
         this.feup = new CGFtexture(this.scene,'images/feup_logo.jpg');
+
         this.selectedFlagTexture = 0;
         this.flagTextures = [this.penguin, this.feup]; 
         this.texturesFlagIds = {
@@ -42,11 +42,9 @@ class MyFlag extends CGFobject {
         
         this.shader.setUniformsValues({phase: this.phase});
         this.shaderInv.setUniformsValues({phase: this.phase});
-
     }
 
     display(){
-
         this.flagTextures[this.selectedFlagTexture].bind(4);
         this.scene.setActiveShader(this.shader);
 

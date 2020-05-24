@@ -124,14 +124,12 @@ class MyAirshipBody extends CGFobject {
 
 		//Engines of airship
 		this.scene.pushMatrix();
-		this.blackMaterial.apply();
 		this.scene.translate(0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
 		this.engine.display();
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.blackMaterial.apply();
 		this.scene.translate(-0.12, -0.515, -0.25);
 		this.scene.scale(0.08, 0.08, 0.08);
 		this.engine.display();

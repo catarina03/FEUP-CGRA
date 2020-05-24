@@ -63,7 +63,6 @@ class MySupply extends CGFobject {
         //Recalculate position according to elapsed time
         if(this.state == SupplyStates.FALLING){
             if (this.previousTime == 0) this.previousTime = t;
-            
             this.deltaTime = (t - this.previousTime)/1000;
             this.previousTime = t;        
 
@@ -88,7 +87,6 @@ class MySupply extends CGFobject {
             this.displayLanded();
 
         this.scene.popMatrix();
-
     }
 
     displayFalling(){

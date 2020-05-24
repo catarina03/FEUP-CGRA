@@ -32,7 +32,6 @@ class MyCockpit extends CGFobject {
 	}
 
 	display(){
-		
 		//Body of the cockpit
 		this.scene.pushMatrix();
 		this.windows.apply();

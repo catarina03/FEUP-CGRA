@@ -10,7 +10,6 @@ class MyCylinder extends CGFobject {
     }
 
     initBuffers(slices) {
-        
         // Vertices
         this.vertices = [];
         var ang = 360/slices;

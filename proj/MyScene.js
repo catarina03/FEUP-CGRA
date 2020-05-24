@@ -205,6 +205,7 @@ class MyScene extends CGFscene {
 
         this.setDefaultAppearance();
 
+
         // ---- BEGIN Primitive drawing section
 
         //Vehicle
@@ -217,9 +218,11 @@ class MyScene extends CGFscene {
         
         //Terrain
         if(this.displayTerrain){
+
             //Billboard
             if(this.displayBillboard)
-                this.billboard.display();            
+                this.billboard.display();       
+
             this.terrain.display();
         }
 
@@ -251,9 +254,9 @@ class MyScene extends CGFscene {
                 this.cube.enableNormalViz();
             else this.cube.disableNormalViz();
         }
-
-       
         
         // ---- END Primitive drawing section
+
+        
     }
 }

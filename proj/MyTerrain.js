@@ -9,8 +9,6 @@ class MyTerrain extends CGFobject {
         super(scene);
         
         this.plane = new MyPlane(this.scene, 20);
-
-        //this.terrainTex = new CGFtexture(this.scene,'images/experiment.png');
         this.terrainTex = new CGFtexture(this.scene,'images/terrain.jpg');
         this.terrainMap = new CGFtexture(this.scene,'images/heightmap.jpg');
         this.shader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
@@ -20,7 +18,6 @@ class MyTerrain extends CGFobject {
 
     }
     display(){
-        
         this.terrainTex.bind(2);
         this.terrainMap.bind(3);
 

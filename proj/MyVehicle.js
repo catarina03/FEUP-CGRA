@@ -44,7 +44,6 @@ class MyVehicle extends CGFobject {
 			this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
 			this.airship.updateRudders();
 		}
-
 		this.airship.update(t);
 
 		//Flag
