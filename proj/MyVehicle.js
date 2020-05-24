@@ -30,7 +30,7 @@ class MyVehicle extends CGFobject {
 	update(t){
 		if (this.lastUpdate==0) this.lastUpdate = t;
         this.delta = (t - this.lastUpdate)/1000.0;
-        this.lastUpdate = t;
+		this.lastUpdate = t;
 
         if (this.autoPilot){
 			this.pilotAngle = this.ang;
@@ -61,6 +61,10 @@ class MyVehicle extends CGFobject {
 		this.center = [x, 0, z];
 
 		this.airship.setVel(this.pilotVel);
+	}
+
+	updateSpeed(speed){
+		this.vel *= speed;
 	}
 
 	stopAutoPilot(){
