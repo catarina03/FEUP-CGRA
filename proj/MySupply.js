@@ -87,7 +87,7 @@ class MySupply extends CGFobject {
 
         else if(this.state == SupplyStates.LANDED){
             this.displayLanded();
-            this.rand = this.previousTime % 4;
+            this.rand = this.previousTime % 3;
         }
             
 
