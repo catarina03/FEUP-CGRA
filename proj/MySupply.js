@@ -17,12 +17,13 @@ class MySupply extends CGFobject {
         this.speed = 0;
         this.state = SupplyStates.INACTIVE;
         this.previousTime = 0;
-        this.counter = 0;
 
         this.face = new MyQuad(this.scene);
         this.supply = new MySphere(this.scene, 16, 8);
 
         this.initMaterials();
+
+        this.rand = 0;
     }
 
     initMaterials(){
@@ -60,6 +61,7 @@ class MySupply extends CGFobject {
     }
 	
     update(t){
+
         //Recalculate position according to elapsed time
         if(this.state == SupplyStates.FALLING){
             if (this.previousTime == 0) this.previousTime = t;
@@ -83,8 +85,11 @@ class MySupply extends CGFobject {
         if(this.state == SupplyStates.FALLING)
             this.displayFalling();
 
-        else if(this.state == SupplyStates.LANDED)
+        else if(this.state == SupplyStates.LANDED){
             this.displayLanded();
+            this.rand = this.previousTime % 4;
+        }
+            
 
         this.scene.popMatrix();
     }
@@ -191,7 +196,7 @@ class MySupply extends CGFobject {
         this.scene.translate(0, 0.5, 0.5);
         this.scene.scale(0.4, 0.4, 0.4);
 
-        switch(this.counter % 3){
+        switch(this.rand){
             case 0:
                 this.topping1.apply();
                 break;
