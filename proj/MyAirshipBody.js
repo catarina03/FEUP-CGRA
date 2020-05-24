@@ -20,7 +20,6 @@ class MyAirshipBody extends CGFobject {
 
 	update(t){
 		this.engine.ang = t * (this.velocity + 0.3);
-		console.log(this.velocity );
 	}
 
 	updateRudders(){ 
