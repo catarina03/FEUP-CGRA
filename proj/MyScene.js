@@ -183,10 +183,7 @@ class MyScene extends CGFscene {
                 this.supplies[i].update(t);
         }
     }
-
-    updateSpeed(){
-        this.vehicle.updateSpeed(this.speedFactor);
-    }
+    
 
     updateAppliedTexture() {
         this.cubeMaterial.setTexture(this.textures[this.selectedTexture]);

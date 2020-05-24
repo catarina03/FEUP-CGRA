@@ -27,7 +27,7 @@ class MyVehicle extends CGFobject {
 		this.shader.setUniformsValues({ flagTex: 4 });
 	}
 
-	update(t){
+	update(t, speedFactor){
 		if (this.lastUpdate==0) this.lastUpdate = t;
         this.delta = (t - this.lastUpdate)/1000.0;
 		this.lastUpdate = t;
@@ -40,8 +40,8 @@ class MyVehicle extends CGFobject {
 			this.airship.ang = -30;
 		}
 		else{
-			this.pos[0] += this.vel * Math.sin(this.ang * Math.PI / 180);
-			this.pos[2] += this.vel * Math.cos(this.ang * Math.PI / 180);
+			this.pos[0] += this.vel * speedFactor * Math.sin(this.ang * Math.PI / 180);
+			this.pos[2] += this.vel * speedFactor * Math.cos(this.ang * Math.PI / 180);
 			this.airship.updateRudders();
 		}
 		this.airship.update(t);
@@ -61,10 +61,6 @@ class MyVehicle extends CGFobject {
 		this.center = [x, 0, z];
 
 		this.airship.setVel(this.pilotVel);
-	}
-
-	updateSpeed(speed){
-		this.vel *= speed;
 	}
 
 	stopAutoPilot(){
