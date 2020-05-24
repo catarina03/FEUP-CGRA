@@ -18,6 +18,7 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        this.gui.add(this.scene, 'zoom', 0.1, 8).name('Zoom');
 
         //Sphere
         var sphere = this.gui.addFolder('Sphere')

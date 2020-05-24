@@ -78,6 +78,7 @@ class MyScene extends CGFscene {
         this.selectedTexture = 0;
         this.speedFactor = 1;
         this.scaleFactor = 1;
+        this.zoom = 1;
 
         this.textures = [this.night, this.cubemap, this.test, this.lava];
 
@@ -199,6 +200,8 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();        
+
+        this.scale(this.zoom, this.zoom, this.zoom);
 
         // Draw axis
         if (this.displayAxis)
