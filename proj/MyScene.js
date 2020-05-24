@@ -113,14 +113,14 @@ class MyScene extends CGFscene {
             text+=" W ";
             keysPressed=true;
             if (!this.vehicle.autoPilot)
-                this.vehicle.accelerate(0.05 * this.speedFactor);
+                this.vehicle.accelerate(0.05 );
         }
 
         if (this.gui.isKeyPressed("KeyS")){
             text+=" S ";
             keysPressed=true;
             if (!this.vehicle.autoPilot)
-                this.vehicle.accelerate(-0.05 * this.speedFactor);
+                this.vehicle.accelerate(-0.05);
         }
 
         if (this.gui.isKeyPressed("KeyD")) {
@@ -178,11 +178,12 @@ class MyScene extends CGFscene {
     update(t){
         if(this.displayVehicle){
             this.checkKeys();
-            this.vehicle.update(t);
+            this.vehicle.update(t, this.speedFactor);
             for(var i = 0; i < 5; i++)
                 this.supplies[i].update(t);
         }
     }
+    
 
     updateAppliedTexture() {
         this.cubeMaterial.setTexture(this.textures[this.selectedTexture]);
